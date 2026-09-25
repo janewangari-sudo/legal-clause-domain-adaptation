@@ -1,0 +1,6 @@
+method,accuracy,accuracy_ci_lower,accuracy_ci_upper,macro_f1,macro_f1_ci_lower,macro_f1_ci_upper
+TF-IDF + Logistic Regression,0.8605,0.8449,0.8762,0.8131,0.7922,0.8308
+Zero-shot,0.6227,0.6011,0.6454,0.6572,0.6344,0.6771
+PEFT,0.6146,0.5924,0.6373,0.6260,0.6053,0.6451
+RAG,0.8157,0.7978,0.8335,0.7762,0.7539,0.7959
+Hybrid,0.8259,0.8092,0.8427,0.7764,0.7558,0.7939

@@ -1,0 +1,6 @@
+method,accuracy,macro_precision,macro_recall,macro_f1,weighted_f1,unknown_count,unknown_rate
+TF-IDF + Logistic Regression,0.8605,0.8178,0.8211,0.8131,0.8559,0,0.0000
+Zero-shot,0.6227,0.7343,0.6453,0.6572,0.6615,244,0.1319
+PEFT,0.6146,0.6713,0.6688,0.6260,0.6199,2,0.0011
+RAG,0.8157,0.8445,0.7484,0.7762,0.8315,138,0.0746
+Hybrid,0.8259,0.8045,0.7934,0.7764,0.8172,1,0.0005
