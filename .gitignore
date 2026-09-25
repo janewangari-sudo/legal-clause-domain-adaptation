@@ -1,0 +1,26 @@
+# Credentials and local configuration
+.env
+.env.*
+*.key
+
+# Python and notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Data, models, and generated artifacts
+data/raw/
+models/
+checkpoints/
+*.safetensors
+*.bin
+*.faiss
+*.pkl
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
