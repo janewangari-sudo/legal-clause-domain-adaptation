@@ -1,0 +1,3 @@
+# Executed notebooks are the research record and documentation layer.
+# Exclude their stored outputs and metadata from GitHub language statistics.
+notebooks/*.ipynb linguist-documentation
