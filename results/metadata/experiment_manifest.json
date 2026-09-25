@@ -1,0 +1,20 @@
+{
+  "status": "primary_study_complete",
+  "refactor_status": "post_experiment_result_preserving_refactor",
+  "dataset": {
+    "name": "CUAD v1",
+    "classes": 20,
+    "split_unit": "annotated_document_title_group",
+    "document_title_group_overlap": false,
+    "training_clauses": 8257,
+    "validation_clauses": 833,
+    "test_clauses": 1850
+  },
+  "primary_metric": "macro_f1",
+  "random_seed": 42,
+  "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "sensitivity_studies": {
+    "answer_only_peft": "unfinished"
+  }
+}
