@@ -12,12 +12,17 @@ venv/
 
 # Data, models, and generated artifacts
 data/raw/
+data/processed/
+artifacts/
 models/
 checkpoints/
 *.safetensors
 *.bin
 *.faiss
 *.pkl
+*.joblib
+*.npz
+*.zip
 
 # Operating-system and editor files
 .DS_Store
