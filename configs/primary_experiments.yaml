@@ -1,0 +1,43 @@
+study:
+  random_seed: 42
+  primary_metric: macro_f1
+  unknown_label: Unknown
+
+dataset:
+  source: CUAD v1
+  grouping_field: Document Name-Answer
+  internal_column: contract_title
+  grouping_unit: annotated_document_title_group
+  split_sizes:
+    train: 8257
+    validation: 833
+    test: 1850
+  document_title_groups:
+    train: 193
+    validation: 35
+    test: 57
+
+baseline:
+  vectorizer:
+    max_features: 5000
+    ngram_range: [1, 2]
+  classifier:
+    max_iter: 1000
+    class_weight: balanced
+    random_state: 42
+
+llm:
+  model_id: mistralai/Mistral-7B-Instruct-v0.2
+
+peft:
+  rank: 16
+  alpha: 32
+  epochs: 1
+  learning_rate: 0.0002
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+
+retrieval:
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  index_type: IndexFlatL2
+  normalize_embeddings: false
+  top_k: 3
