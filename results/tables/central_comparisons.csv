@@ -1,5 +1,5 @@
-method_a,method_b,accuracy_difference_b_minus_a,holm_adjusted_p_value,macro_f1_difference_b_minus_a,macro_f1_difference_ci_lower,macro_f1_difference_ci_upper
-TF-IDF + Logistic Regression,Zero-shot,-0.237838,0.000000,-0.155849,-0.181443,-0.131204
-TF-IDF + Logistic Regression,PEFT,-0.245946,0.000000,-0.187026,-0.210704,-0.163014
+method_a,method_b,accuracy_difference_b_minus_a,holm_adjusted_p_value_reported,macro_f1_difference_b_minus_a,macro_f1_difference_ci_lower,macro_f1_difference_ci_upper
+TF-IDF + Logistic Regression,Zero-shot,-0.237838,<0.0000005,-0.155849,-0.181443,-0.131204
+TF-IDF + Logistic Regression,PEFT,-0.245946,<0.0000005,-0.187026,-0.210704,-0.163014
 TF-IDF + Logistic Regression,RAG,-0.044865,0.000001,-0.036898,-0.060524,-0.013274
 TF-IDF + Logistic Regression,Hybrid,-0.034595,0.000679,-0.036667,-0.058930,-0.014552
