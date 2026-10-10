@@ -10,7 +10,9 @@ The study compares a TF-IDF logistic-regression baseline with four
 Mistral-7B-Instruct approaches: zero-shot prompting, PEFT (LoRA), RAG, and a
 PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 
-## Main result
+## Results
+
+### Original five-method comparison
 
 | Method | Accuracy | Macro F1 | Weighted F1 |
 |---|---:|---:|---:|
@@ -20,10 +22,27 @@ PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 | Zero-shot | 0.6227 | 0.6572 | 0.6615 |
 | PEFT | 0.6146 | 0.6260 | 0.6199 |
 
-Retrieval produced the largest improvement among the evaluated LLM adaptation
-strategies. The Hybrid method achieved slightly higher accuracy than RAG, but
-their overall Macro F1 values were effectively identical. The classical
-baseline remained strongest on this fixed-label task.
+Retrieval produced the largest improvement among the LLM approaches in the
+original comparison. The Hybrid method achieved slightly higher accuracy than
+RAG, but their Macro F1 values were effectively identical. The classical
+baseline was the strongest original method.
+
+### Corrected PEFT sensitivity
+
+A post-hoc PEFT sensitivity study corrected the training objective and matched
+the inference prompt to the training prompt. The condition was selected on
+validation and then evaluated once on test.
+
+| Method | Analysis status | Accuracy | Macro F1 | Weighted F1 |
+|---|---|---:|---:|---:|
+| Corrected PEFT | Post-hoc sensitivity | **0.8946** | **0.8460** | **0.8861** |
+| TF-IDF + Logistic Regression | Original comparison | 0.8605 | 0.8131 | 0.8559 |
+
+The corrected PEFT advantage over the baseline was 0.0341 Accuracy (95%
+document-title-group cluster-bootstrap CI [0.0230, 0.0460]) and 0.0329 Macro F1
+(95% CI [0.0162, 0.0516]). This qualifies the original conclusion but does not
+erase the original PEFT result or convert the sensitivity study into a
+preplanned experiment.
 
 ## Repository status
 
@@ -32,14 +51,15 @@ modular package in `src/` is a subsequent, result-preserving refactor intended
 to make validation and reuse easier. It must not be represented as the exact
 code path that originally generated every archived output.
 
-The corrected answer-only PEFT sensitivity study remains unfinished and does
-not replace the frozen primary PEFT result.
+The corrected answer-only PEFT sensitivity study is complete. Its artifacts
+are kept separate from the original five-method study and are explicitly
+labelled post-hoc and validation-selected.
 
 ## Repository structure
 
 ```text
 configs/       Frozen labels and experiment settings
-docs/          Methodology, data contract, limitations, and reproduction notes
+docs/          Thesis chapter drafts, data contract, limitations, and reproduction notes
 notebooks/     Executed data-preparation and experiment records
 results/       Machine-readable primary metrics and confidence intervals
 scripts/       Small command-line entry points

@@ -12,7 +12,14 @@ memory and the archived model, adapter, prediction, and retrieval artifacts.
 2. Review and configure paths in `notebooks/01_data_preparation.ipynb`.
 3. Run data preparation to create the frozen CSV, PEFT, and RAG artifacts.
 4. Run `notebooks/02_experiments.ipynb` for the primary five-method study.
-5. Run repository validation and compare generated metrics with `results/`.
+5. Run `notebooks/03_peft_answer_only_control.ipynb` through
+   `notebooks/05_peft_v4_condition_c_final_test.ipynb` in order for the
+   post-hoc corrected PEFT sensitivity analysis. Do not rerun test selection or
+   modify the frozen Condition C settings.
+6. Run `notebooks/06_corrected_peft_final_statistics.ipynb` on CPU to reproduce
+   the six-method descriptive tables, parser audit and 57-group cluster
+   bootstrap.
+7. Run repository validation and compare generated metrics with `results/`.
 
 ## Local validation
 

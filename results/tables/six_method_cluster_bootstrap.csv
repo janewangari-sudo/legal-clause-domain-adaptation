@@ -1,0 +1,7 @@
+method,analysis_status,clusters,bootstrap_resamples,accuracy,accuracy_ci_lower,accuracy_ci_upper,macro_f1,macro_f1_ci_lower,macro_f1_ci_upper
+TF-IDF + Logistic Regression,primary,57,5000,0.8605,0.8453,0.8764,0.8131,0.7973,0.8251
+Zero-shot,primary,57,5000,0.6227,0.5930,0.6549,0.6572,0.6321,0.6823
+Original PEFT,primary,57,5000,0.6146,0.5864,0.6449,0.6260,0.6004,0.6484
+RAG,primary,57,5000,0.8157,0.7856,0.8462,0.7762,0.7521,0.7985
+Hybrid,primary,57,5000,0.8259,0.8040,0.8448,0.7764,0.7567,0.7912
+Corrected PEFT (post-hoc),post_hoc_validation_selected_sensitivity,57,5000,0.8946,0.8778,0.9120,0.8460,0.8235,0.8658

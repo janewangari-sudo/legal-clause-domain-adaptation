@@ -1,0 +1,4 @@
+condition,description,accuracy,macro_f1
+A_existing_label_prompt_default_bos,Label-list prompt with original default tokenisation,0.8595,0.7852
+B_label_prompt_single_bos,Label-list prompt with one BOS token,0.8619,0.7922
+C_training_prompt_single_bos,Exact training prompt with one BOS token,0.9256,0.8550

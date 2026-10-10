@@ -1,5 +1,5 @@
 {
-  "status": "primary_study_complete",
+  "status": "primary_study_and_corrected_peft_sensitivity_complete",
   "refactor_status": "post_experiment_result_preserving_refactor",
   "dataset": {
     "name": "CUAD v1",
@@ -15,6 +15,14 @@
   "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
   "sensitivity_studies": {
-    "answer_only_peft": "unfinished"
+    "answer_only_peft": {
+      "status": "complete",
+      "analysis_status": "post_hoc_validation_selected_sensitivity",
+      "selected_condition": "C_training_prompt_single_bos",
+      "test_evaluated_once": true,
+      "further_model_selection_permitted": false,
+      "test_accuracy": 0.8945945945945946,
+      "test_macro_f1": 0.8459891223818202
+    }
   }
 }
