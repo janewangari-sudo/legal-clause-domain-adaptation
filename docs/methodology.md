@@ -32,13 +32,15 @@ it is not an unbiased sixth member of the original design.
 
 The data were derived from version 1 of the Contract Understanding Atticus
 Dataset (CUAD), an expert-annotated resource for legal contract review
-(Hendrycks et al., 2021). The source file contained 510 contracts and 40
-annotated clause types. List-valued clause annotations were expanded so that
-each extracted clause became one observation. This produced 12,984 clauses
-before class filtering. The analysis used a fixed set of 20 clause types,
-leaving 10,940 observations. Each observation contained the clause text, its
-clause-type label, and the annotated `Document Name-Answer` value, stored in the
-project as `contract_title`.
+(Hendrycks et al., 2021). CUAD contains 510 contracts and 41 published label
+categories. In the project's `master_clauses.csv` representation, the
+extraction code used the 40 columns whose names ended in `-Answer` to identify
+the clause types, then expanded the list-valued spans in the corresponding
+clause columns so that each extracted clause became one observation. This
+produced 12,984 clauses before class filtering. The analysis used a fixed set
+of 20 clause types, leaving 10,940 observations. Each
+observation contained the clause text, its clause-type label, and the annotated
+`Document Name-Answer` value, stored in the project as `contract_title`.
 
 Empty clause entries were removed, surrounding whitespace was stripped, and
 letter case was left unchanged. The 20 labels and their reporting order were
@@ -75,8 +77,9 @@ their wording was repeated.
 The classical baseline represented each clause with TF-IDF-weighted unigrams
 and bigrams. The vocabulary was limited to 5,000 features. A logistic-regression
 classifier used balanced class weights, a maximum of 1,000 iterations, and
-random seed 42. This method generated one of the 20 labels directly and could
-not produce an unknown textual response.
+random seed 42. It was implemented with scikit-learn (Pedregosa et al., 2011).
+This method generated one of the 20 labels directly and could not produce an
+unknown textual response.
 
 ### 3.4.2 Zero-shot prompting
 
@@ -84,7 +87,9 @@ The zero-shot method used `mistralai/Mistral-7B-Instruct-v0.2` without updating
 its parameters. Mistral 7B is an instruction-capable seven-billion-parameter
 model that uses grouped-query and sliding-window attention (Jiang et al., 2023).
 Each clause was supplied with the complete class list and an instruction to
-return only one category name. Decoding was deterministic.
+return only one category name. Inputs were tokenised to a maximum of 4,096
+tokens, generation was limited to 12 new tokens, and decoding was
+deterministic.
 
 ### 3.4.3 Original PEFT
 
@@ -94,7 +99,7 @@ matrices, reducing the number of trainable parameters (Hu et al., 2022). The
 base model was loaded in four-bit NF4 form with double quantisation, following
 the memory-saving principles of QLoRA (Dettmers et al., 2023).
 
-The adapter used rank 16, scaling factor 32, dropout 0.05, and the `q_proj`,
+The adapter used rank 16, `lora_alpha` 32, dropout 0.05, and the `q_proj`,
 `k_proj`, `v_proj`, and `o_proj` target modules. Training used one epoch, a
 learning rate of 0.0002, effective batch size 16, seed 42, and 2,048-token
 training sequences. There were 13,631,488 trainable parameters, representing
@@ -109,17 +114,28 @@ was not recognised until the original test predictions had been inspected. It
 is therefore treated as a defect in the original implementation, not as a
 prespecified experimental factor.
 
+Original PEFT inference used a 4,096-token input limit and a 12-token
+generation limit. These inference limits differ from the 2,048-token maximum
+used to construct training sequences and are reported separately rather than
+being treated as one shared truncation setting.
+
 ### 3.4.4 Retrieval-augmented generation
 
 The RAG method embedded the training clauses with
 `sentence-transformers/all-MiniLM-L6-v2`. Sentence-transformer models produce
-fixed-size semantic representations suitable for similarity search (Reimers &
+fixed-size semantic representations suitable for similarity search (Reimers and
 Gurevych, 2019). The unnormalised vectors were stored in a FAISS `IndexFlatL2`
 index (Johnson et al., 2019). For each query, the three nearest training
 examples were inserted into the classification prompt. This implementation
 used retrieval as in-context evidence rather than jointly training the
 retriever and generator; it is therefore a task-specific RAG pipeline rather
 than the end-to-end architecture introduced by Lewis et al. (2020).
+
+Within each RAG prompt, every retrieved training clause was capped at 550
+tokens. The query clause was capped at 1,500 tokens; for a longer query, 75% of
+the retained tokens came from its beginning and 25% from its end. The assembled
+prompt was then left-truncated to the model's 4,096-token input limit.
+Generation was deterministic and limited to 12 new tokens.
 
 ### 3.4.5 PEFT-RAG hybrid
 
@@ -128,6 +144,10 @@ examples used by RAG. No additional training was performed. Because the
 original adapter had not been trained on retrieval-style prompts, the hybrid
 tested whether retrieved demonstrations helped at inference time; it did not
 test a retrieval-aware fine-tuning objective.
+
+The hybrid used the same three-neighbour retrieval records and the same 550,
+1,500 and 4,096-token truncation rules as RAG. Its generation limit was also 12
+new tokens.
 
 ## 3.5 Corrected PEFT sensitivity study
 
@@ -170,10 +190,10 @@ in the inference prompt. This matched the prompt seen during v4 training.
 ### 3.5.3 Frozen corrected test evaluation
 
 Condition C was evaluated once on all 1,850 test rows. The base model, adapter,
-prompt, tokenisation, deterministic decoding, 12-token generation limit, and
-strict parser were frozen beforehand. Alternative prompt conditions were not
-evaluated on the test set, and no further model selection was permitted after
-the corrected test predictions were inspected.
+prompt, tokenisation, 4,096-token input limit, deterministic decoding, 12-token
+generation limit, and strict parser were frozen beforehand. Alternative prompt
+conditions were not evaluated on the test set, and no further model selection
+was permitted after the corrected test predictions were inspected.
 
 ## 3.6 Output parsing and failure handling
 

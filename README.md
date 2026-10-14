@@ -133,8 +133,10 @@ Google Drive, Colab, or GitHub credentials.
 - Retrieval examples per query: `3`
 - Unknown or non-canonical generated labels are scored as incorrect
 
-See [`docs/reproduction.md`](docs/reproduction.md) for execution order and
-[`docs/limitations.md`](docs/limitations.md) for unresolved constraints.
+See [`docs/reproduction.md`](docs/reproduction.md) for execution order,
+[`docs/source_and_factual_audit.md`](docs/source_and_factual_audit.md) for the
+claim-to-evidence audit, and [`docs/limitations.md`](docs/limitations.md) for
+unresolved constraints.
 
 ## Licence and citation
 
