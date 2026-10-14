@@ -2,9 +2,8 @@
 
 Research software and reproducibility materials for the MSc thesis:
 
-> **Comparative Analysis of Prompt Engineering, Parameter-Efficient Fine-Tuning,
-> and Retrieval-Augmented Generation for Legal Domain Adaptation: An Empirical
-> Study on Contract Clause Classification**
+> **An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, and
+> Retrieval-Augmented Generation for Legal Contract Clause Classification**
 
 The study compares a TF-IDF logistic-regression baseline with four
 Mistral-7B-Instruct approaches: zero-shot prompting, PEFT (LoRA), RAG, and a
@@ -66,6 +65,22 @@ scripts/       Small command-line entry points
 src/           Reusable validation, baseline, prompting, and evaluation code
 tests/         Methodological and integrity tests
 ```
+
+## Thesis manuscript
+
+The seven thesis chapters are maintained as reviewable Markdown files under
+`docs/`. The formatted Word draft is generated locally and is deliberately not
+tracked because it contains submission-specific personal and administrative
+fields.
+
+```bash
+python -m pip install -e ".[thesis]"
+python scripts/build_thesis_document.py
+```
+
+Before generating a submission copy, confirm the exact approved title,
+candidate details, programme wording, supervisor name and academic title. The
+mandatory AI-use declaration is included at the end of the generated draft.
 
 ## Split definition
 

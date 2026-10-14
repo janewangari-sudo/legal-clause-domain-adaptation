@@ -1,4 +1,4 @@
-# Chapter 4 — Results
+# Chapter 4 - Results
 
 ## 4.1 Prediction audit
 
@@ -12,25 +12,34 @@ form the original comparison.
 ## 4.2 Original five-method comparison
 
 Table 4.1 reports the frozen original results. TF-IDF with logistic regression
-was strongest in this comparison, with Accuracy 0.8605 and Macro F1 0.8131.
-Hybrid and RAG formed the next tier. Hybrid had slightly higher Accuracy than
-RAG, but their Macro F1 values were almost identical. Zero-shot prompting and
-Original PEFT performed substantially worse.
+had the highest Accuracy (0.8605) and Macro F1 (0.8131). Hybrid achieved higher
+Accuracy than RAG (0.8259 versus 0.8157), while their Macro F1 scores differed
+by only 0.0002. Zero-shot prompting and Original PEFT scored below the other
+three methods on both measures.
 
 **Table 4.1. Original five-method test results**
 
-| Method | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 | Unknown |
+| Method | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 | Unknown n (%) |
 |---|---:|---:|---:|---:|---:|---:|
-| TF-IDF + Logistic Regression | **0.8605** | 0.8178 | 0.8211 | **0.8131** | **0.8559** | 0 |
-| Zero-shot | 0.6227 | 0.7343 | 0.6453 | 0.6572 | 0.6615 | 244 |
-| Original PEFT | 0.6146 | 0.6713 | 0.6688 | 0.6260 | 0.6199 | 2 |
-| RAG | 0.8157 | 0.8445 | 0.7484 | 0.7762 | 0.8315 | 138 |
-| Hybrid | 0.8259 | 0.8045 | 0.7934 | 0.7764 | 0.8172 | 1 |
+| TF-IDF + Logistic Regression | **0.8605** | 0.8178 | 0.8211 | **0.8131** | **0.8559** | 0 (0.00%) |
+| Zero-shot | 0.6227 | 0.7343 | 0.6453 | 0.6572 | 0.6615 | 244 (13.19%) |
+| Original PEFT | 0.6146 | 0.6713 | 0.6688 | 0.6260 | 0.6199 | 2 (0.11%) |
+| RAG | 0.8157 | 0.8445 | 0.7484 | 0.7762 | 0.8315 | 138 (7.46%) |
+| Hybrid | 0.8259 | 0.8045 | 0.7934 | 0.7764 | 0.8172 | 1 (0.05%) |
 
-The original conclusion was therefore that retrieval yielded the largest
-improvement among the Mistral-based approaches, while the classical baseline
-remained strongest overall. The corrected PEFT analysis below qualifies that
-conclusion rather than erasing it.
+Within the original Mistral-based experiments, the two retrieval conditions
+produced the highest scores. The classical baseline nevertheless remained the
+strongest method in the original comparison. Section 4.4 adds the later
+Corrected PEFT result without replacing these frozen results.
+
+The retrieval audit provides context for the RAG and Hybrid results. The label
+of the nearest training example matched the test label for 0.7654 of the test
+rows, while the correct label appeared among the three retrieved examples for
+0.8800. Exact train-test text matches occurred for 102 rows (5.51%). Excluding
+those rows changed RAG Accuracy from 0.8157 to 0.8061 and Macro F1 from 0.7762
+to 0.7739. Hybrid Accuracy changed from 0.8259 to 0.8169 and Macro F1 from
+0.7764 to 0.7756. The overall retrieval results were therefore not produced
+solely by the exact matches.
 
 ## 4.3 Corrected PEFT validation selection
 
@@ -48,11 +57,13 @@ a much larger change.
 | B: label-list prompt, one BOS token | 0.8619 | 0.7922 |
 | C: training-matched prompt, one BOS token | **0.9256** | **0.8550** |
 
-The A-to-B Macro F1 difference was 0.0070, below the declared 0.01 materiality
-threshold. Condition C improved Macro F1 by 0.0698 relative to A and by 0.0628
-relative to B. This indicates that prompt matching, rather than BOS handling
-alone, was the dominant remaining inference issue. Condition C was selected by
-validation Macro F1 before the corrected test evaluation.
+The A-to-B Macro F1 difference was 0.0070, below the 0.01 materiality threshold
+used for the diagnostic. Condition C improved Macro F1 by 0.0698 relative to A
+and by 0.0628 relative to B. In this validation comparison, correcting BOS
+handling alone had little effect, whereas using the training-matched prompt
+produced a larger change. Because Condition C changed the prompt as a whole,
+the result does not isolate the effect of each wording difference. Condition C
+was selected by validation Macro F1 before the corrected test evaluation.
 
 ## 4.4 Six-method sensitivity comparison
 
@@ -71,10 +82,11 @@ six reported conditions.
 | Hybrid | Original comparison | 0.8259 | 0.7764 | 0.8172 | 0.0005 |
 | Corrected PEFT | Post-hoc sensitivity | **0.8946** | **0.8460** | **0.8861** | **0.0000** |
 
-This result changes the substantive interpretation of PEFT. The poor Original
-PEFT score cannot be treated as evidence that parameter-efficient adaptation
-was inherently ineffective for the task. Performance depended strongly on the
-training objective and consistency between training and inference formatting.
+The 0.2800 Accuracy difference between Original and Corrected PEFT shows that
+the reported PEFT outcome depended heavily on implementation choices. The two
+rows should not be read as equivalent repetitions: Corrected PEFT used
+answer-only loss and a validation-selected, training-matched inference prompt,
+and it was developed after the original error analysis.
 
 ## 4.5 Cluster-bootstrap uncertainty
 
@@ -160,9 +172,9 @@ deterministic exact-text ceiling was 0.9330.
 Corrected PEFT obtained Accuracy 0.4857 on conflict rows but 0.9570 on the
 remaining 1,605 rows. Its Macro F1 was 0.4186 across the 17 labels present in
 the conflict subset and 0.9162 across all 20 labels in the non-conflict subset.
-Every method deteriorated sharply on conflicting rows. This pattern supports
-the interpretation that a material portion of the remaining error arises from
-label ambiguity or missing document context, not merely model capacity.
+Every method deteriorated sharply on conflicting rows. The result is consistent
+with ambiguity in the isolated text, although this analysis cannot determine
+how much additional document context would resolve each case.
 
 The 0.9330 figure is not a universal ceiling. It applies to a deterministic
 classifier that receives the exact isolated clause text and must assign one
@@ -182,12 +194,11 @@ justify retroactively replacing the parser after seeing test responses.
 
 ## 4.9 Results summary
 
-Three conclusions follow from the final evidence. First, TF-IDF with logistic
-regression was the strongest method in the original five-method comparison.
-Second, a validation-selected correction to PEFT subsequently achieved the
-highest overall test performance, and its advantage over the baseline remained
-positive under document-title-group resampling. Third, performance was highly
-sensitive to exact-text label conflicts: Corrected PEFT approached 96% Accuracy
-on non-conflicting rows but remained below 49% on conflict rows. The results
-therefore demonstrate both the potential of carefully configured PEFT and the
-limits of classifying legally ambiguous examples from isolated clause text.
+TF-IDF with logistic regression was the strongest method in the original
+five-method comparison. Corrected PEFT subsequently produced the highest point
+estimates, and its paired cluster-bootstrap differences from the baseline were
+positive for both Accuracy and Macro F1. This later result remains post-hoc.
+Finally, the conflict analysis separated two markedly different settings:
+Corrected PEFT reached 0.9570 Accuracy on non-conflicting rows and 0.4857 on
+rows whose exact text carried more than one label. Chapter 5 considers what
+these findings mean for domain adaptation and for clause-only evaluation.

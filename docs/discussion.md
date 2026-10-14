@@ -1,10 +1,10 @@
-# Chapter 5 — Discussion
+# Chapter 5 - Discussion
 
 ## 5.1 Overview of the findings
 
 The experiments produced two related but distinct findings. In the original
 five-method comparison, TF-IDF with logistic regression achieved the highest
-Accuracy and Macro F1. RAG and the PEFT–RAG hybrid substantially improved on
+Accuracy and Macro F1. RAG and the PEFT-RAG hybrid substantially improved on
 zero-shot prompting and Original PEFT, but neither surpassed the classical
 baseline. In the subsequent sensitivity study, Corrected PEFT achieved the
 highest overall scores: 0.8946 Accuracy and 0.8460 Macro F1.
@@ -19,20 +19,21 @@ changed the ranking of the methods on this task.
 
 ## 5.2 Why the classical baseline was difficult to beat
 
-The strong TF-IDF result is plausible for a fixed-label legal classification
-task. Many CUAD categories are associated with recurring lexical patterns,
-including terms such as “governing law”, “insurance”, “audit”, and
-“termination”. A supervised linear classifier can use these repeated local
-signals directly without generating free-form text. It also cannot lose credit
-through formatting errors.
+The TF-IDF result is consistent with the structure of this task. Several CUAD
+categories contain recurring lexical cues, including “governing law”,
+“insurance”, “audit”, and “termination”. A supervised linear classifier can
+learn these associations directly. It also returns one label from a fixed set,
+so it cannot lose credit by explaining an answer, truncating a label, or
+producing two labels.
 
-The baseline should not be described as generally superior to language models.
-Its advantage was observed on one dataset, one split, and a closed 20-class
-task. It may weaken when labels depend on wider context, when terminology
-changes across jurisdictions, or when the task requires explanation rather
-than category assignment. Nevertheless, its performance demonstrates that an
-LLM comparison without a serious classical baseline would have overstated the
-value of model scale.
+This does not establish that linear models are generally superior to language
+models. The advantage was observed on one split of one English-language dataset
+and on a closed 20-class task. It might not persist when terminology changes,
+when the relevant distinction depends on distant context, or when the system
+must justify its decision. Even with that qualification, the result exposes a
+weakness common in model comparisons: if a competent classical baseline is
+omitted, improvements attributed to model scale may simply reflect an easy
+label-to-keyword relationship.
 
 ## 5.3 Interpreting the corrected PEFT result
 
@@ -42,41 +43,55 @@ intervals for both differences excluded zero. Corrected PEFT also exceeded the
 TF-IDF baseline by 0.0341 Accuracy and 0.0329 Macro F1, with positive
 document-title-group bootstrap intervals.
 
-The validation diagnostic helps explain part of this change. Correcting the
+The validation diagnostic accounts for part of this change. Correcting the
 extra beginning-of-sequence token while retaining the label-list prompt moved
 Macro F1 only from 0.7852 to 0.7922. Replacing that prompt with the exact
 training prompt increased Macro F1 to 0.8550. The inference-prompt mismatch was
-therefore materially more consequential than BOS handling for the completed v4
-adapter.
+therefore associated with a much larger change than BOS handling for the
+completed v4 adapter.
 
-The evidence does not support assigning the entire improvement to one cause.
-The v4 adapter used answer-only supervision, whereas the Original PEFT adapter
-used full-sequence loss. The later A–C diagnostic changed inference conditions
-without retraining and therefore isolated prompt and BOS effects within v4, but
-the study did not train all combinations of loss objective and prompt design.
-A claim such as “answer-only loss caused the full 0.2199 Macro F1 improvement”
-would consequently be unjustified. What can be stated is that the combination
-of answer-focused training and matched inference formatting produced a much
-stronger PEFT system.
+That comparison should not be stretched into a causal decomposition. Condition
+C changed the prompt as a whole, including its wording and the absence of the
+label list; it did not vary those elements one at a time. More broadly, the
+evidence does not support assigning the entire Original-to-Corrected PEFT
+improvement to one cause. The v4 adapter used answer-only supervision, whereas
+the Original PEFT adapter used full-sequence loss. The later A-C diagnostic
+changed inference conditions without retraining, but the study did not train
+all combinations of loss objective and prompt design. A claim such as
+“answer-only loss caused the full 0.2199 Macro F1 improvement” would therefore
+be unjustified. What can be stated is that answer-focused training combined
+with matched inference formatting produced a much stronger PEFT system.
 
-The post-hoc status also matters. Error inspection from the original test run
-helped motivate the correction. Validation-only selection and a single frozen
-test evaluation reduced further leakage, but they cannot turn the sensitivity
-study into a preplanned experiment. Reporting both PEFT versions is therefore
-more credible than replacing the initial result with the better one.
+The post-hoc status limits the strength of the comparison. Error inspection
+from the original test run helped determine which defect to investigate.
+Validation-only selection and a single frozen evaluation prevented direct
+selection among v4 conditions on the test set, but the wider research question
+had already been influenced by test behaviour. Corrected PEFT is therefore
+strong evidence that the original implementation understated PEFT performance;
+it is weaker evidence that the same advantage would reproduce on an untouched
+dataset. Reporting both PEFT versions is more credible than replacing the
+initial result with the better one.
 
 ## 5.4 Retrieval and the hybrid method
 
 RAG increased Macro F1 from 0.6572 for Zero-shot to 0.7762 and reduced the
 performance gap to the baseline. This supports the practical value of supplying
 semantically similar labelled examples at inference time. The retrieval audit
-also showed that the correct label appeared among the top three retrieved
-examples more often than it appeared at rank one, suggesting that multiple
-demonstrations gave the generator useful evidence even when the nearest single
-example was imperfect.
+showed top-one label accuracy of 0.7654 and correct-label Recall@3 of 0.8800.
+Multiple demonstrations therefore increased the chance that the prompt
+contained an example from the correct class, although these figures do not show
+which demonstration the generator actually used.
+
+Exact text overlap is an obvious alternative explanation for retrieval
+performance. There were 102 exact train-test matches, but removing them reduced
+RAG Macro F1 only from 0.7762 to 0.7739 and Hybrid Macro F1 from 0.7764 to
+0.7756. The retrieval results cannot therefore be reduced to those exact
+matches. Recurrent legal boilerplate and near-duplicate language may still make
+the test distribution easier, so the analysis does not eliminate every form of
+template overlap.
 
 Hybrid produced slightly higher Accuracy than RAG but almost identical Macro
-F1. Its near-zero unknown rate shows that the adapter improved adherence to the
+F1. Its near-zero unknown rate is consistent with better adherence to the
 required output format. However, the hybrid did not inherit the full benefit of
 Corrected PEFT. It used the Original PEFT adapter, which had not been trained on
 retrieval-style prompts. The result therefore concerns inference-time
@@ -119,72 +134,54 @@ formatting failures were meaningful but did not explain the overall method
 ranking.
 
 Corrected PEFT was unchanged under the relaxed parser and produced no unknown
-outputs. This is evidence that task-specific adaptation improved not only
-classification but also compliance with the required response format. The
+outputs. In this experiment, the corrected adaptation procedure was associated
+with both higher classification scores and consistent output formatting. The
 strict parser remains preferable for the main comparison because it was the
-frozen rule and because accepting arbitrary explanatory continuations after
-test inspection would introduce analytical discretion.
+frozen rule and because accepting explanatory continuations after test
+inspection would introduce analytical discretion.
 
 ## 5.7 Implications for legal-domain adaptation
 
-The results suggest four practical lessons.
+For a closed classification task with recurring terminology, a classical
+supervised model is not merely a token baseline. It may be the sensible
+deployment choice when its accuracy is competitive, predictions must remain
+within a fixed schema, and computational resources are limited. The present
+study did not collect a common cost benchmark, so it cannot quantify that
+trade-off, but the baseline required neither LLM inference nor adapter
+training.
 
-First, classical supervised models should remain part of legal NLP evaluation
-when the task has fixed labels and repeated lexical patterns. Their low
-computational cost and strong performance make them a meaningful benchmark,
-not a formality.
+The PEFT findings make the definition of an experiment broader than its LoRA
+hyperparameters. Rank, scaling factor, and learning rate are only part of the
+system. Prompt construction, special-token handling, the tokens included in
+the loss, decoding, and parsing all affected the observed result. Reporting an
+adapter configuration without these surrounding choices would be insufficient
+for reproduction.
 
-Second, PEFT quality depends on the complete training-and-inference pipeline.
-Adapter rank and learning rate are not sufficient descriptions of an
-experiment; prompt construction, token boundaries, supervised-token masking,
-and decoding rules can alter the conclusion.
+Retrieval remains useful when labelled examples exist but training is
+impractical. It improved substantially over Zero-shot without changing model
+weights. Its 7.46% strict-parser unknown rate also shows the compromise: adding
+relevant examples improved classification, but did not guarantee controlled
+generation. In an operational system, constrained decoding or a discriminative
+classification head might be preferable to repairing outputs after generation.
 
-Third, retrieval offers a useful no-training adaptation mechanism. It improved
-substantially over Zero-shot and may be preferable when labelled examples are
-available but GPU training is impractical. Its strict-parser unknown rate,
-however, shows that retrieval does not automatically guarantee controlled
-generation.
+The conflict analysis raises a more basic issue. Some labels describe the
+function of a passage within a contract, not merely its wording. When identical
+text is assigned to Agreement Date in one record and Effective Date in another,
+the model may be asked to recover information that is absent from the clause.
+Adding headings, neighbouring provisions, or document metadata may therefore
+be more productive than further tuning a clause-only model. Annotation review
+is also necessary, but a repeated text with two labels is not automatically an
+annotation error; the same wording can legitimately serve different functions.
 
-Fourth, legal labels may encode document function rather than wording alone.
-When identical text receives different labels, additional document context or
-revised annotation policy may yield more benefit than another round of
-hyperparameter tuning.
+## 5.8 Discussion summary
 
-## 5.8 Threats to validity and future work
-
-The main internal-validity threat is the post-hoc origin of Corrected PEFT. The
-validation/test separation and frozen single test evaluation strengthen the
-result, but independent replication would provide stronger confirmation. A
-future study should specify the prompt, answer-only masking and selection rule
-before evaluating any test predictions.
-
-A full factorial design could separately vary full-sequence versus answer-only
-loss and label-list versus training-matched prompts. That design would estimate
-which component contributes most, rather than attributing the combined change
-retrospectively.
-
-Future work should also test document-aware inputs, especially for Agreement
-Date, Effective Date, License Grant and Non-Transferable License. Contract
-headings or neighbouring text may resolve conflicts that are impossible from
-isolated clauses. Evaluation on another legal dataset and another base model
-would show whether the observed ranking generalises.
-
-Finally, efficiency should be measured consistently. The corrected adapter
-required 2 hours, 16 minutes and 44 seconds of training on the recorded Colab
-run, while the classical baseline required no GPU. Complete wall-clock,
-inference-latency, memory, energy and financial-cost measurements were not
-collected under a common protocol. Claims about cost-effectiveness should
-therefore remain qualitative.
-
-## 5.9 Discussion summary
-
-The study initially appeared to show that PEFT underperformed both zero-shot
-prompting and retrieval. The controlled sensitivity analysis exposed that this
-conclusion was fragile: a corrected PEFT pipeline became the strongest observed
-configuration. At the same time, the classical baseline remained highly
-competitive, retrieval offered substantial gains without additional model
-training, and exact-text conflicts sharply constrained every method. The main
-lesson is methodological as much as predictive: credible comparison of legal
-language-model adaptation strategies requires strict control over prompts,
-training targets, parsing rules, grouped uncertainty and the status of
-post-hoc analyses.
+The original experiment suggested that PEFT underperformed both zero-shot
+prompting and retrieval. The sensitivity analysis showed that this conclusion
+depended on a defective PEFT implementation: the corrected pipeline became the
+highest-scoring observed configuration. That result must remain qualified by
+its post-hoc origin. The classical baseline was still competitive, retrieval
+produced substantial gains without training the generator, and exact-text
+conflicts constrained every method. Taken together, the experiments show that
+method ranking cannot be separated from prompt design, training targets,
+output parsing, grouped uncertainty, and the information contained in the
+input itself.

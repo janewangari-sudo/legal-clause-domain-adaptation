@@ -16,6 +16,9 @@ receives the submission copy.
 
 ## Items that must be verified before final formatting
 
+- Proposed replacement title: `An Empirical Comparison of Prompting,
+  Parameter-Efficient Fine-Tuning, and Retrieval-Augmented Generation for Legal
+  Contract Clause Classification`.
 - [ ] Thesis title matches the title registered in Neptun exactly.
 - [ ] If it does not match, submit the Neptun request `IK Title modification
       form for writing a Thesis or Diploma Work_2026/27/1`.

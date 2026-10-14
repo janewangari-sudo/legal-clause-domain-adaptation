@@ -6,7 +6,10 @@
 # Python and notebooks
 __pycache__/
 *.py[cod]
+*.egg-info/
 .ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
 .venv/
 venv/
 
@@ -23,6 +26,11 @@ checkpoints/
 *.joblib
 *.npz
 *.zip
+
+# Local thesis build products
+Legal_Clause_Classification_Thesis_Draft.docx
+thesis.pdf
+thesis_render*/
 
 # Operating-system and editor files
 .DS_Store
