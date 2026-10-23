@@ -7,6 +7,12 @@ This record documents the source and numerical checks completed on 14 October
 files and statistical tables remain the authority for experimental results;
 the prose chapters must not be used to reconstruct those values.
 
+The user-edited Word manuscript was rechecked on 15 October 2026. Chapters 1
+and 2 were preserved, while Chapters 3 to 7 were reconciled with this audit.
+The final Word reference list contains the same 21 cited works recorded here,
+and its methodology now states the audited CUAD transformation and all three
+generative truncation limits explicitly.
+
 The bibliography uses a consistent author-date format. Titles, author lists,
 years, venues, pages and identifiers were checked against publisher,
 conference or bibliographic records where available. All works cited in the
