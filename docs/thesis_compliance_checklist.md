@@ -16,10 +16,10 @@ receives the submission copy.
 
 ## Items that must be verified before final formatting
 
-- Proposed replacement title: `An Empirical Comparison of Prompting,
+- Neptun-registered title: `An Empirical Comparison of Prompting,
   Parameter-Efficient Fine-Tuning, and Retrieval-Augmented Generation for Legal
   Contract Clause Classification`.
-- [ ] Thesis title matches the title registered in Neptun exactly.
+- [x] Thesis title matches the title registered in Neptun exactly.
 - [ ] If it does not match, submit the Neptun request `IK Title modification
       form for writing a Thesis or Diploma Work_2026/27/1`.
 - [ ] Student's full official name is confirmed.
@@ -46,20 +46,22 @@ receives the submission copy.
 ## Document structure
 
 - [ ] Title page.
-- [ ] Table of contents immediately after the title page, using decimal
-      numbering and showing chapters, sections, subsections, bibliography,
-      appendices and page numbers.
+- [x] Word table-of-contents field included, using decimal numbering and showing
+      chapters, sections, subsections, bibliography and page numbers. In the
+      current Faculty-formatted draft, acknowledgements and the abstract precede
+      the table of contents.
 - [ ] Abstract/review of exactly 5-6 sentences for the DEA record; also keep a
       matching polished thesis abstract if the final document includes one.
 - [ ] Introduction of approximately 2-3 pages covering topic choice,
       theoretical and practical importance, objectives and methods.
-- [ ] Main body of approximately 30-40 pages.
+- [x] Main assessed part is 37 pages in the supervisor-revised draft (Chapter 1
+      through the end of the bibliography).
 - [ ] Conclusion of approximately 2-3 pages, including objectives that were not
       demonstrated and their justified explanation.
 - [ ] Bibliography containing every source actually used.
 - [ ] Appendices limited to approximately 8-10 pages.
-- [ ] Optional acknowledgements.
-- [ ] Mandatory AI-use declaration at the end of the thesis, using the Faculty's
+- [x] Optional acknowledgements included.
+- [x] Mandatory AI-use declaration at the end of the thesis, using the Faculty's
       official declaration form/wording.
 
 ## Formatting
@@ -71,7 +73,7 @@ receives the submission copy.
 - [ ] Paragraphs justified.
 - [ ] Left, upper and lower margins: 3 cm.
 - [ ] Right margin: 2 cm.
-- [ ] Final PDF visually checked for page breaks, tables, figures, captions,
+- [x] Final draft visually checked for page breaks, tables, figures, captions,
       cross-references, page numbering and table-of-contents accuracy.
 
 ## Academic integrity and AI-use record
@@ -130,7 +132,7 @@ receives the submission copy.
 
 ## Final unresolved administrative inputs
 
-- [ ] Copy the exact approved title from Neptun into the thesis project.
+- [x] Copy the exact approved title from Neptun into the thesis project.
 - [ ] Confirm the supervisor's official academic title.
 - [ ] Download and preserve the current official Faculty AI declaration DOCX.
 - [ ] Confirm with the supervisor whether the thesis abstract itself must also
