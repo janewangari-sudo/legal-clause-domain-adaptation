@@ -9,7 +9,7 @@ from docx import Document
 from docx.enum.section import WD_SECTION
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Mm, Pt, RGBColor
@@ -29,71 +29,6 @@ CHAPTERS = [
     DOCS / "conclusion.md",
     DOCS / "bibliography.md",
 ]
-
-# Filled after the first layout pass. Keeping this mapping in the build script
-# makes the delivered table of contents stable in both Word and PDF renderers.
-TOC_PAGES: dict[str, int] = {
-    "Chapter 1: Introduction": 4,
-    "1.1 Background and motivation": 4,
-    "1.2 Research problem": 5,
-    "1.3 Research aim and objectives": 6,
-    "1.4 Research questions": 6,
-    "1.5 Scope and contributions": 7,
-    "1.6 Structure of the thesis": 7,
-    "Chapter 2: Literature Review and Theoretical Background": 8,
-    "2.1 Natural language processing in the legal domain": 8,
-    "2.2 Contract clause classification": 9,
-    "2.3 Large language models and prompting": 10,
-    "2.4 Parameter-efficient fine-tuning": 11,
-    "2.5 Retrieval-augmented generation": 12,
-    "2.6 Combining retrieval and parameter adaptation": 13,
-    "2.7 Classical text-classification baselines": 14,
-    "2.8 Research gap and analytical framework": 14,
-    "Chapter 3: Methodology": 16,
-    "3.1 Research design and analysis status": 16,
-    "3.2 Dataset and classification task": 16,
-    "3.3 Grouped data partitioning": 17,
-    "3.4 Compared methods": 17,
-    "3.5 Corrected PEFT sensitivity study": 19,
-    "3.6 Output parsing and failure handling": 20,
-    "3.7 Evaluation and statistical analysis": 21,
-    "3.8 Exact-text conflict analysis": 21,
-    "3.9 Reproducibility and experiment preservation": 21,
-    "Chapter 4: Results": 23,
-    "4.1 Prediction audit": 23,
-    "4.2 Original five-method comparison": 23,
-    "4.3 Corrected PEFT validation selection": 24,
-    "4.4 Six-method sensitivity comparison": 24,
-    "4.5 Cluster-bootstrap uncertainty": 25,
-    "4.6 Corrected PEFT class-level performance": 26,
-    "4.7 Exact-text conflicts": 27,
-    "4.8 Parser sensitivity": 28,
-    "4.9 Results summary": 28,
-    "Chapter 5: Discussion": 29,
-    "5.1 Overview of the findings": 29,
-    "5.2 Why the classical baseline was difficult to beat": 29,
-    "5.3 Interpreting the corrected PEFT result": 30,
-    "5.4 Retrieval and the hybrid method": 31,
-    "5.5 Label ambiguity and missing context": 31,
-    "5.6 Output-format sensitivity": 32,
-    "5.7 Implications for legal-domain adaptation": 32,
-    "5.8 Discussion summary": 33,
-    "Chapter 6: Limitations and Future Work": 34,
-    "6.1 Scope and external validity": 34,
-    "6.2 Experimental design": 34,
-    "6.3 Data and task definition": 35,
-    "6.4 Measurement and statistical inference": 35,
-    "6.5 Reproducibility and computational evidence": 36,
-    "6.6 Future work": 37,
-    "Chapter 7: Conclusion": 38,
-    "7.1 Study overview": 38,
-    "7.2 Answers to the research questions": 38,
-    "7.3 Contributions": 41,
-    "7.4 Unmet objectives and future direction": 41,
-    "7.5 Final conclusion": 42,
-    "Bibliography": 43,
-    "Declaration on the Use of Artificial Intelligence Tools": 46,
-}
 
 TITLE = (
     "An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, "
@@ -516,30 +451,17 @@ def add_front_matter(doc):
     )
 
     doc.add_page_break()
-    p = doc.add_paragraph(style="Heading 1")
+    # A genuine TOC field replaces the earlier manually typed contents list.
+    # Word refreshes the entries from the Heading 1--3 styles when the document
+    # is opened (or when the user presses Ctrl+A, F9).
+    p = doc.add_paragraph(style="Title")
     add_inline(p, "Table of Contents")
-    entries: list[tuple[int, str]] = []
-    for path in CHAPTERS:
-        for line in path.read_text(encoding="utf-8").splitlines():
-            match = re.match(r"^(#{1,2})\s+(.+)$", line.strip())
-            if match:
-                title = match.group(2).replace(" - ", ": ", 1)
-                entries.append((len(match.group(1)), title))
-    entries.append((1, "Declaration on the Use of Artificial Intelligence Tools"))
-    for level, title in entries:
-        toc = doc.add_paragraph()
-        toc.paragraph_format.left_indent = Cm(0 if level == 1 else 0.65)
-        toc.paragraph_format.space_after = Pt(0)
-        toc.paragraph_format.line_spacing = 1.0
-        toc.paragraph_format.tab_stops.add_tab_stop(
-            Cm(15.3), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS
-        )
-        run = toc.add_run(title)
-        set_run_font(run, 10.5, bold=(level == 1))
-        toc.add_run("\t")
-        page = TOC_PAGES.get(title)
-        page_run = toc.add_run(str(page) if page is not None else "")
-        set_run_font(page_run, 10.5, bold=(level == 1))
+    toc = doc.add_paragraph()
+    add_field(
+        toc,
+        ' TOC \\o "1-3" \\h \\z \\u ',
+        "Update the table in Word by pressing Ctrl+A, then F9.",
+    )
 
 
 def add_ai_declaration(doc):
