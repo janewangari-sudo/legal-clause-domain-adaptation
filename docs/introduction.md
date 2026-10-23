@@ -81,7 +81,7 @@ logistic regression as a supervised baseline.
 
 The study pursues five objectives:
 
-1. construct a reproducible 20-class classification dataset from CUAD and
+1. Construct a reproducible 20-class classification dataset from CUAD and
    divide it into grouped training, validation and test partitions;
 2. implement the classical baseline and the four Mistral-7B-Instruct-v0.2
    configurations under a common label schema and evaluation protocol;

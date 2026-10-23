@@ -69,14 +69,25 @@ tests/         Methodological and integrity tests
 ## Thesis manuscript
 
 The seven thesis chapters are maintained as reviewable Markdown files under
-`docs/`. The formatted Word draft is generated locally and is deliberately not
-tracked because it contains submission-specific personal and administrative
-fields.
+`docs/`, together with the four figures used in the supervisor-revised draft.
+The formatted Word draft is generated locally and is deliberately not tracked
+because it contains submission-specific personal and administrative fields.
+
+Set the title-page fields in the shell before building. This keeps candidate
+and supervisor details out of the public source files:
 
 ```bash
 python -m pip install -e ".[thesis]"
+export THESIS_CANDIDATE_NAME="<candidate full name>"
+export THESIS_PROGRAMME_NAME="Data Science MSc"
+export THESIS_SUPERVISOR_NAME="<supervisor full name>"
+export THESIS_SUPERVISOR_TITLE="<official academic title>"
 python scripts/build_thesis_document.py
 ```
+
+On Windows PowerShell, replace `export NAME="value"` with
+`$env:NAME="value"`. Open the generated document in Microsoft Word and update
+all fields with `Ctrl+A`, `F9` before checking pagination.
 
 Before generating a submission copy, confirm the exact approved title,
 candidate details, programme wording, supervisor name and academic title. The
@@ -100,6 +111,26 @@ python -m pip install -e ".[dev]"
 pytest
 python scripts/validate_repository.py
 ```
+
+## Notebook execution order
+
+Run the notebooks in numerical order. The first two contain the primary study;
+the remaining four preserve the post-hoc Corrected PEFT sensitivity workflow:
+
+1. `01_data_preparation.ipynb`
+2. `02_experiments.ipynb`
+3. `03_peft_answer_only_control.ipynb`
+4. `04_peft_v4_validation_diagnostics.ipynb`
+5. `05_peft_v4_condition_c_final_test.ipynb`
+6. `06_corrected_peft_final_statistics.ipynb`
+
+The diagnostic and test notebooks contain hard stops designed to prevent test
+reuse or post-test tuning. Configure the Google Drive paths inside the
+notebooks, preserve the frozen prompts and settings, and do not replace the
+archived primary results with the later sensitivity condition. See
+[`notebooks/README.md`](notebooks/README.md) and
+[`docs/reproduction.md`](docs/reproduction.md) for the purpose and resource
+requirements of each stage.
 
 To reproduce the classical baseline after placing the frozen split files in a
 local data directory:

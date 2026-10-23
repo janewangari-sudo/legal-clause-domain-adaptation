@@ -2,20 +2,13 @@
 
 ## 5.1 Overview of the findings
 
-The experiments produced two related but distinct findings. In the original
-five-method comparison, TF-IDF with logistic regression achieved the highest
-Accuracy and Macro F1. RAG and the PEFT-RAG hybrid substantially improved on
-zero-shot prompting and Original PEFT, but neither surpassed the classical
-baseline. In the subsequent sensitivity study, Corrected PEFT achieved the
-highest overall scores: 0.8946 Accuracy and 0.8460 Macro F1.
-
-These findings are not contradictory. They answer slightly different
-questions. The original comparison shows how the five implemented pipelines
-performed when first frozen. The sensitivity study shows that the original
-PEFT result was highly dependent on training-objective and prompt-consistency
-choices. The correct conclusion is therefore not that one method class is
-unconditionally superior. It is that implementation fidelity materially
-changed the ranking of the methods on this task.
+The original and sensitivity analyses answer different questions. In the
+frozen five-method comparison, TF-IDF with logistic regression ranked first,
+while RAG and the Hybrid outperformed Zero-shot prompting and Original PEFT.
+Corrected PEFT later produced the highest observed scores, indicating that the
+original PEFT outcome depended heavily on supervision and prompt alignment.
+Tables 4.1 and 4.3 retain this distinction rather than replacing the historical
+result.
 
 ## 5.2 Why the classical baseline was difficult to beat
 
@@ -37,151 +30,75 @@ label-to-keyword relationship.
 
 ## 5.3 Interpreting the corrected PEFT result
 
-Original PEFT obtained 0.6146 Accuracy and 0.6260 Macro F1, whereas Corrected
-PEFT obtained 0.8946 and 0.8460 respectively. The paired cluster-bootstrap
-intervals for both differences excluded zero. Corrected PEFT also exceeded the
-TF-IDF baseline by 0.0341 Accuracy and 0.0329 Macro F1, with positive
-document-title-group bootstrap intervals.
+Corrected PEFT substantially outperformed Original PEFT and exceeded the
+TF-IDF baseline; the paired cluster-bootstrap intervals in Table 4.5 excluded
+zero. On validation, removing the duplicate BOS token changed Macro F1 only
+slightly, whereas using the training-matched prompt produced a larger
+improvement (Table 4.2).
 
-The validation diagnostic accounts for part of this change. Correcting the
-extra beginning-of-sequence token while retaining the label-list prompt moved
-Macro F1 only from 0.7852 to 0.7922. Replacing that prompt with the exact
-training prompt increased Macro F1 to 0.8550. The inference-prompt mismatch was
-therefore associated with a much larger change than BOS handling for the
-completed v4 adapter.
+The experiment does not isolate a single cause. The corrected adapter used
+answer-only supervision, while the validation diagnostic changed prompt
+wording and removed the label list. Because all loss-target and prompt
+combinations were not trained, the entire improvement from Original to
+Corrected PEFT cannot be attributed to loss masking or prompt alignment alone.
 
-That comparison should not be stretched into a causal decomposition. Condition
-C changed the prompt as a whole, including its wording and the absence of the
-label list; it did not vary those elements one at a time. More broadly, the
-evidence does not support assigning the entire Original-to-Corrected PEFT
-improvement to one cause. The v4 adapter used answer-only supervision, whereas
-the Original PEFT adapter used full-sequence loss. The later A-C diagnostic
-changed inference conditions without retraining, but the study did not train
-all combinations of loss objective and prompt design. A claim such as
-“answer-only loss caused the full 0.2199 Macro F1 improvement” would therefore
-be unjustified. What can be stated is that answer-focused training combined
-with matched inference formatting produced a much stronger PEFT system.
+The condition also remains post-hoc. Original test errors motivated the
+investigation, although validation-only selection and one frozen corrected test
+evaluation limited further test-set selection. The result suggests that the
+original pipeline understated PEFT performance, but an independently specified
+replication is needed to test whether the advantage persists.
 
-The post-hoc status limits the strength of the comparison. Error inspection
-from the original test run helped determine which defect to investigate.
-Validation-only selection and a single frozen evaluation prevented direct
-selection among v4 conditions on the test set, but the wider research question
-had already been influenced by test behaviour. Corrected PEFT is therefore
-strong evidence that the original implementation understated PEFT performance;
-it is weaker evidence that the same advantage would reproduce on an untouched
-dataset. Reporting both PEFT versions is more credible than replacing the
-initial result with the better one.
+## 5.4 Retrieval and the Hybrid method
 
-## 5.4 Retrieval and the hybrid method
+RAG raised Macro F1 from 0.6572 for Zero-shot prompting to 0.7762 and narrowed
+the gap to the baseline. The correct label appeared first for 76.54% of queries
+and within the top three for 88.00%, although these retrieval measures do not
+reveal which demonstration the generator used. There were 102 exact training
+and test matches, but removing them changed RAG Macro F1 only from 0.7762 to
+0.7739, so exact copying alone does not explain the result.
 
-RAG increased Macro F1 from 0.6572 for Zero-shot to 0.7762 and reduced the
-performance gap to the baseline. This supports the practical value of supplying
-semantically similar labelled examples at inference time. The retrieval audit
-showed top-one label accuracy of 0.7654 and correct-label Recall@3 of 0.8800.
-Multiple demonstrations therefore increased the chance that the prompt
-contained an example from the correct class, although these figures do not show
-which demonstration the generator actually used.
-
-Exact text overlap is an obvious alternative explanation for retrieval
-performance. There were 102 exact train-test matches, but removing them reduced
-RAG Macro F1 only from 0.7762 to 0.7739 and Hybrid Macro F1 from 0.7764 to
-0.7756. The retrieval results cannot therefore be reduced to those exact
-matches. Recurrent legal boilerplate and near-duplicate language may still make
-the test distribution easier, so the analysis does not eliminate every form of
-template overlap.
-
-Hybrid produced slightly higher Accuracy than RAG but almost identical Macro
-F1. Its near-zero unknown rate is consistent with better adherence to the
-required output format. However, the hybrid did not inherit the full benefit of
-Corrected PEFT. It used the Original PEFT adapter, which had not been trained on
-retrieval-style prompts. The result therefore concerns inference-time
-combination, not retrieval-aware adapter training. A future experiment could
-train an answer-only adapter on the same prompt structure used by the hybrid,
-but doing that after the frozen test analysis would constitute a new study.
+The Hybrid achieved slightly higher Accuracy than RAG but nearly identical
+Macro F1. It also produced fewer invalid outputs. However, it used the Original
+adapter, which had not been trained on retrieval-style prompts. Its score
+therefore measures an inference-time combination and does not determine the
+performance of a retrieval-aware adapter.
 
 ## 5.5 Label ambiguity and missing context
 
-The exact-text analysis revealed a structural limit in the task formulation.
-The test set contained 120 clause strings assigned to multiple labels, covering
-245 rows. Corrected PEFT achieved 0.9570 Accuracy on non-conflicting rows but
-only 0.4857 on conflict rows. All methods showed the same broad deterioration.
+The conflict analysis in Section 4.7 identifies a structural limitation of
+clause-only input. Bare dates may represent either Agreement Date or Effective
+Date, while transfer restrictions can occur inside a broader License Grant.
+Identical wording can therefore receive different labels depending on context
+that the classifier does not observe.
 
-Agreement Date and Effective Date illustrate the problem. A bare date such as
-“September 28, 2018” does not identify its legal function when removed from the
-surrounding document. License Grant and Non-Transferable License can also share
-the same language because transfer restrictions may form part of a licence
-grant. A clause-only model is forced to infer distinctions that may not be
-present in its input.
+The deterministic ceiling applies only when identical isolated strings must
+receive one label. It is not a general upper bound: section headings,
+neighbouring clauses or document metadata may resolve some conflicts. The high
+non-conflict performance indicates that missing context and label definition
+are major factors in the remaining errors, alongside model limitations.
 
-The calculated 0.9330 ceiling should be interpreted narrowly. It describes the
-best deterministic assignment obtainable when every identical text must
-receive one label. It does not prove that 93.30% is the maximum achievable
-accuracy. Contract title, section heading, neighbouring clauses, or other
-document context could distinguish examples that are identical when isolated.
+## 5.6 Output format sensitivity
 
-This finding has practical implications. Further optimisation of the same
-clause-only model may produce diminishing returns unless the label conflicts
-are reviewed or contextual features are introduced. The 0.9570 non-conflict
-Accuracy suggests that data definition has become at least as important as
-model capacity for the remaining errors.
+Allowing a valid leading label increased Zero-shot Accuracy by 0.0135 and RAG
+Accuracy by 0.0173 but did not change the overall ranking. Corrected PEFT
+produced no unknown outputs. Strict parsing remains primary because it was
+fixed for the main comparison; relaxing it after inspecting test responses
+would add analytical discretion.
 
-## 5.6 Output-format sensitivity
+## 5.7 Implications for legal domain adaptation
 
-Strict parsing penalised valid labels followed by explanations or additional
-labels. Allowing a valid leading label increased Zero-shot Accuracy by 0.0135
-and RAG Accuracy by 0.0173. The smaller Macro F1 changes indicate that these
-formatting failures were meaningful but did not explain the overall method
-ranking.
+For a closed task with recurring terminology, a classical supervised model can
+be a sensible deployment choice when predictions must stay within a fixed
+schema and computational resources are limited. This study did not collect
+comparable cost measurements, so it cannot quantify that trade-off.
 
-Corrected PEFT was unchanged under the relaxed parser and produced no unknown
-outputs. In this experiment, the corrected adaptation procedure was associated
-with both higher classification scores and consistent output formatting. The
-strict parser remains preferable for the main comparison because it was the
-frozen rule and because accepting explanatory continuations after test
-inspection would introduce analytical discretion.
+The PEFT experiments show that rank, scaling factor and learning rate do not
+fully define an adapter system. The loss target, prompt, special-token handling,
+decoding and parser also affect performance. Retrieval substantially improved
+Zero-shot prompting without changing model weights, although its invalid-output
+rate shows that relevant demonstrations do not guarantee controlled generation.
 
-## 5.7 Implications for legal-domain adaptation
-
-For a closed classification task with recurring terminology, a classical
-supervised model is not merely a token baseline. It may be the sensible
-deployment choice when its accuracy is competitive, predictions must remain
-within a fixed schema, and computational resources are limited. The present
-study did not collect a common cost benchmark, so it cannot quantify that
-trade-off, but the baseline required neither LLM inference nor adapter
-training.
-
-The PEFT findings make the definition of an experiment broader than its LoRA
-hyperparameters. Rank, scaling factor, and learning rate are only part of the
-system. Prompt construction, special-token handling, the tokens included in
-the loss, decoding, and parsing all affected the observed result. Reporting an
-adapter configuration without these surrounding choices would be insufficient
-for reproduction.
-
-Retrieval remains useful when labelled examples exist but training is
-impractical. It improved substantially over Zero-shot without changing model
-weights. Its 7.46% strict-parser unknown rate also shows the compromise: adding
-relevant examples improved classification, but did not guarantee controlled
-generation. In an operational system, constrained decoding or a discriminative
-classification head might be preferable to repairing outputs after generation.
-
-The conflict analysis raises a more basic issue. Some labels describe the
-function of a passage within a contract, not merely its wording. When identical
-text is assigned to Agreement Date in one record and Effective Date in another,
-the model may be asked to recover information that is absent from the clause.
-Adding headings, neighbouring provisions, or document metadata may therefore
-be more productive than further tuning a clause-only model. Annotation review
-is also necessary, but a repeated text with two labels is not automatically an
-annotation error; the same wording can legitimately serve different functions.
-
-## 5.8 Discussion summary
-
-The original experiment suggested that PEFT underperformed both zero-shot
-prompting and retrieval. The sensitivity analysis showed that this conclusion
-depended on a defective PEFT implementation: the corrected pipeline became the
-highest-scoring observed configuration. That result must remain qualified by
-its post-hoc origin. The classical baseline was still competitive, retrieval
-produced substantial gains without training the generator, and exact-text
-conflicts constrained every method. Taken together, the experiments show that
-method ranking cannot be separated from prompt design, training targets,
-output parsing, grouped uncertainty, and the information contained in the
-input itself.
+Some labels describe a passage's function within the contract rather than its
+wording alone. Adding document context and reviewing conflicting supervision
+may therefore be more productive than further optimisation of an unchanged
+clause-only pipeline.

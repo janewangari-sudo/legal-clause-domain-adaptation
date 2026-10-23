@@ -43,11 +43,10 @@ solely by the exact matches.
 
 ## 4.3 Corrected PEFT validation selection
 
-The answer-only v4 adapter was first evaluated under three validation-only
-inference conditions. Removing the duplicate beginning-of-sequence token while
-retaining the label-list prompt produced only a small improvement from
-Condition A to B. Matching the inference prompt to the training prompt produced
-a much larger change.
+The answer-only v4 adapter was evaluated under three validation-only inference
+conditions (Table 4.2). Removing the duplicate BOS token while retaining the
+label-list prompt produced only a small improvement. Matching inference to the
+training prompt produced a much larger change.
 
 **Table 4.2. Validation-only corrected PEFT diagnostic**
 
@@ -67,9 +66,9 @@ was selected by validation Macro F1 before the corrected test evaluation.
 
 ## 4.4 Six-method sensitivity comparison
 
-Corrected PEFT achieved Accuracy 0.8946, Macro F1 0.8460 and Weighted F1
-0.8861, with no unknown predictions. Numerically, it was the strongest of the
-six reported conditions.
+Table 4.3 adds Corrected PEFT as a post-hoc sensitivity condition. It achieved
+Accuracy 0.8946, Macro F1 0.8460 and Weighted F1 0.8861, with no unknown
+predictions, giving the highest observed point estimates.
 
 **Table 4.3. Test results with corrected PEFT shown as a sensitivity condition**
 
@@ -93,7 +92,9 @@ and it was developed after the original error analysis.
 Table 4.4 reports percentile intervals from 5,000 paired resamples of the 57
 test document-title groups. Corrected PEFT retained the highest point estimates.
 Its Accuracy interval was 0.8778–0.9120 and its Macro F1 interval was
-0.8235–0.8658.
+0.8235–0.8658. Figure 4.1 visualises the same intervals.
+
+![Figure 4.1. Accuracy and Macro F1 with document-title-group cluster-bootstrap intervals](figures/figure_4_1_cluster_bootstrap_intervals.png)
 
 **Table 4.4. Document-title-group cluster-bootstrap intervals**
 
@@ -107,7 +108,7 @@ Its Accuracy interval was 0.8778–0.9120 and its Macro F1 interval was
 | Corrected PEFT | 0.8946 | [0.8778, 0.9120] | 0.8460 | [0.8235, 0.8658] |
 
 Paired cluster-bootstrap differences are more informative than overlap between
-separate intervals. Corrected PEFT exceeded the baseline by 0.0341 Accuracy
+separate intervals. As shown in Table 4.5, Corrected PEFT exceeded the baseline by 0.0341 Accuracy
 (95% CI [0.0230, 0.0460]) and 0.0329 Macro F1 (95% CI [0.0162, 0.0516]). Both
 intervals excluded zero. The same was true for every comparison between
 Corrected PEFT and an original method.
@@ -128,10 +129,12 @@ descriptive checks rather than the principal evidence.
 
 ## 4.6 Corrected PEFT class-level performance
 
-Corrected PEFT exceeded F1 0.90 for 12 of the 20 classes. Parties, Document
-Name, Governing Law, Cap On Liability and Insurance were classified especially
-well. The weakest categories were Non-Transferable License, Effective Date and
-Exclusivity.
+Table 4.6 gives the Corrected PEFT class-level results. F1 exceeded 0.90 for 12
+classes, while Non-Transferable License, Effective Date and Exclusivity were
+weakest. Figure 4.2 highlights the precision-recall imbalance for these
+categories and the related Agreement Date and License Grant classes.
+
+![Figure 4.2. Corrected PEFT performance for the weakest and related classes](figures/figure_4_2_weak_class_performance.png)
 
 **Table 4.6. Corrected PEFT per-class test performance**
 
@@ -139,7 +142,7 @@ Exclusivity.
 |---|---:|---:|---:|---:|
 | Parties | 0.9976 | 1.0000 | 0.9988 | 418 |
 | License Grant | 0.6519 | 0.9035 | 0.7574 | 114 |
-| Cap On Liability | 0.9888 | 0.9670 | 0.9778 | 91 |
+| Cap on Liability | 0.9888 | 0.9670 | 0.9778 | 91 |
 | Audit Rights | 0.9328 | 1.0000 | 0.9652 | 111 |
 | Anti-Assignment | 0.9474 | 0.9558 | 0.9515 | 113 |
 | Insurance | 0.9452 | 1.0000 | 0.9718 | 69 |
@@ -152,8 +155,8 @@ Exclusivity.
 | Revenue/Profit Sharing | 0.9753 | 0.9186 | 0.9461 | 86 |
 | Minimum Commitment | 0.8939 | 0.9365 | 0.9147 | 63 |
 | Exclusivity | 0.6875 | 0.5789 | 0.6286 | 57 |
-| Rofr/Rofo/Rofn | 0.8714 | 0.8714 | 0.8714 | 70 |
-| Ip Ownership Assignment | 0.9500 | 0.9500 | 0.9500 | 40 |
+| ROFR/ROFO/ROFN | 0.8714 | 0.8714 | 0.8714 | 70 |
+| IP Ownership Assignment | 0.9500 | 0.9500 | 0.9500 | 40 |
 | Non-Transferable License | 0.7059 | 0.2353 | 0.3529 | 51 |
 | Non-Compete | 0.8889 | 0.7059 | 0.7869 | 34 |
 | Termination For Convenience | 1.0000 | 0.8649 | 0.9275 | 37 |
@@ -191,14 +194,3 @@ parser.
 Strict parsing remains the primary analysis. The sensitivity result shows that
 some Zero-shot and RAG errors were output-format failures, but it does not
 justify retroactively replacing the parser after seeing test responses.
-
-## 4.9 Results summary
-
-TF-IDF with logistic regression was the strongest method in the original
-five-method comparison. Corrected PEFT subsequently produced the highest point
-estimates, and its paired cluster-bootstrap differences from the baseline were
-positive for both Accuracy and Macro F1. This later result remains post-hoc.
-Finally, the conflict analysis separated two markedly different settings:
-Corrected PEFT reached 0.9570 Accuracy on non-conflicting rows and 0.4857 on
-rows whose exact text carried more than one label. Chapter 5 considers what
-these findings mean for domain adaptation and for clause-only evaluation.

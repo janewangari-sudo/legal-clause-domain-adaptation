@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 
@@ -18,6 +19,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 OUTPUT = ROOT / "Legal_Clause_Classification_Thesis_Draft.docx"
 FONT = "Times New Roman"
+
+CANDIDATE_NAME = os.getenv("THESIS_CANDIDATE_NAME", "[Insert candidate full name]")
+PROGRAMME_NAME = os.getenv("THESIS_PROGRAMME_NAME", "Data Science MSc")
+SUPERVISOR_NAME = os.getenv("THESIS_SUPERVISOR_NAME", "[Insert supervisor full name]")
+SUPERVISOR_TITLE = os.getenv("THESIS_SUPERVISOR_TITLE", "[Insert academic title]")
 
 CHAPTERS = [
     DOCS / "introduction.md",
@@ -241,6 +247,12 @@ def markdown_blocks(text: str):
             yield from flush()
             i += 1
             continue
+        image = re.match(r"^!\[(.+?)\]\((.+?)\)$", stripped)
+        if image:
+            yield from flush()
+            yield ("image", (image.group(1), image.group(2)))
+            i += 1
+            continue
         if (
             stripped.startswith("|")
             and i + 1 < len(lines)
@@ -272,6 +284,7 @@ def markdown_blocks(text: str):
                     not nxt.strip()
                     or re.match(r"^(#{1,3})\s+", nxt.strip())
                     or re.match(r"^([1-9]\.|[-*])\s+", nxt.strip())
+                    or re.match(r"^!\[.+?\]\(.+?\)$", nxt.strip())
                     or nxt.strip().startswith("|")
                 ):
                     break
@@ -301,6 +314,18 @@ def add_markdown(doc, path: Path):
             marker, text = payload
             style = "List Number" if marker[0].isdigit() else "List Bullet"
             add_body_paragraph(doc, text, style=style)
+        elif kind == "image":
+            caption, relative_path = payload
+            image_path = path.parent / relative_path
+            if not image_path.exists():
+                raise FileNotFoundError(image_path)
+            picture = doc.add_paragraph()
+            picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            picture.paragraph_format.keep_with_next = True
+            run = picture.add_run()
+            run.add_picture(str(image_path), width=Cm(14.5))
+            caption_paragraph = doc.add_paragraph(style="Caption")
+            add_inline(caption_paragraph, caption)
         else:
             text = payload
             if re.match(r"^\*\*Table \d+\.\d+\..+\*\*$", text):
@@ -420,13 +445,15 @@ def add_title_page(doc):
     p = left.paragraphs[0]
     set_run_font(p.add_run("Supervisor"), 12, bold=True)
     p = left.add_paragraph()
-    set_run_font(p.add_run("[Insert academic title and full name]"), 12)
+    set_run_font(p.add_run(SUPERVISOR_NAME), 12)
+    p = left.add_paragraph()
+    set_run_font(p.add_run(SUPERVISOR_TITLE), 12)
     p = right.paragraphs[0]
     set_run_font(p.add_run("Candidate"), 12, bold=True)
     p = right.add_paragraph()
-    set_run_font(p.add_run("Gathongo Jane Wangari"), 12)
+    set_run_font(p.add_run(CANDIDATE_NAME), 12)
     p = right.add_paragraph()
-    set_run_font(p.add_run("Data Science MSc"), 12)
+    set_run_font(p.add_run(PROGRAMME_NAME), 12)
 
     spacer = doc.add_paragraph()
     spacer.paragraph_format.space_after = Pt(42)
@@ -436,6 +463,32 @@ def add_title_page(doc):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     set_run_font(p.add_run("2026"), 12, bold=True)
+
+
+def add_acknowledgements(doc):
+    p = doc.add_paragraph(style="Heading 1")
+    add_inline(p, "Acknowledgements")
+    supervisor_reference = (
+        SUPERVISOR_NAME
+        if not SUPERVISOR_NAME.startswith("[Insert")
+        else "my supervisor"
+    )
+    add_body_paragraph(
+        doc,
+        f"I would like to thank {supervisor_reference} for guidance, constructive "
+        "feedback and support throughout the development of this thesis. The "
+        "comments received helped me refine the research design and present the "
+        "findings more critically.",
+    )
+    add_body_paragraph(
+        doc,
+        "I am also grateful to my family and friends for their encouragement, "
+        "patience and practical support during my studies. Finally, I would like "
+        "to thank everyone who contributed advice, discussion or moral support "
+        "while I worked through the technical and academic challenges of this "
+        "research.",
+    )
+    doc.add_page_break()
 
 
 def add_front_matter(doc):
@@ -550,7 +603,9 @@ def build():
     configure_styles(doc)
     doc.core_properties.title = TITLE
     doc.core_properties.subject = "MSc thesis on legal contract clause classification"
-    doc.core_properties.author = "Gathongo Jane Wangari"
+    doc.core_properties.author = (
+        CANDIDATE_NAME if not CANDIDATE_NAME.startswith("[Insert") else ""
+    )
     settings = doc.settings._element
     update = OxmlElement("w:updateFields")
     update.set(qn("w:val"), "true")
@@ -563,6 +618,7 @@ def build():
     main.footer.is_linked_to_previous = False
     set_page_number_start(main, 1)
     add_page_number(main)
+    add_acknowledgements(doc)
     add_front_matter(doc)
 
     for chapter in CHAPTERS:

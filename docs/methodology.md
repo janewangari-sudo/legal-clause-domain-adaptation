@@ -8,7 +8,10 @@ with logistic regression, zero-shot prompting, parameter-efficient
 fine-tuning (PEFT), retrieval-augmented generation (RAG), and a PEFT-RAG
 hybrid. Macro F1 was chosen as the primary measure because the class frequencies
 were uneven. Unlike accuracy, it gives each category the same weight and
-therefore makes poor performance on the smaller classes visible.
+therefore makes poor performance on the smaller classes visible. Figure 3.1
+summarises the experimental pipeline.
+
+![Figure 3.1. Overview of the experimental pipeline](figures/figure_3_1_experimental_pipeline.png)
 
 The work developed in two stages. The first was the planned five-method
 comparison. Those predictions were saved before any corrective PEFT work was
@@ -53,7 +56,10 @@ The clauses were partitioned using a two-stage grouped split with random seed
 42. All rows sharing the same annotated document-title value were assigned to
 one partition. First, 20% of the 285 document-title groups were assigned to the
 test set. Of the remaining groups, 15% were assigned to validation and the rest
-to training. The resulting partitions were:
+to training. Table 3.1 reports the resulting partitions, and Figure 3.2 shows
+the class distribution across them.
+
+**Table 3.1. Grouped dataset partitions**
 
 | Partition | Clauses | Document-title groups |
 |---|---:|---:|
@@ -69,6 +75,8 @@ while standard legal language may recur across differently named documents.
 For that reason, exact and near-duplicate text was audited separately. These
 audits were diagnostic: records were not removed automatically merely because
 their wording was repeated.
+
+![Figure 3.2. Class distribution across the training, validation and test partitions](figures/figure_3_2_class_distribution.png)
 
 ## 3.4 Compared methods
 
@@ -168,7 +176,10 @@ was not loaded during this run.
 
 ### 3.5.2 Validation-only prompt diagnostic
 
-The completed adapter was evaluated under three validation conditions:
+The completed adapter was evaluated under the three validation conditions
+summarised in Table 3.2.
+
+**Table 3.2. Corrected PEFT validation conditions**
 
 | Condition | Prompt and tokenisation |
 |---|---|
@@ -242,6 +253,9 @@ classification based only on the exact clause string; it is not a universal
 ceiling for systems that use wider document context.
 
 ## 3.9 Reproducibility and experiment preservation
+
+The public source repository is available at
+https://github.com/janewangari-sudo/legal-clause-domain-adaptation.
 
 All splits, labels and random seeds were frozen. Prediction files were audited
 for row identifiers, clause text, true labels, duplicates, and schema-invalid
