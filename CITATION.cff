@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the thesis and the software."
+title: "Legal Clause Domain Adaptation"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Gathongo
+    given-names: Jane Wangari
+repository-code: "https://github.com/janewangari-sudo/legal-clause-domain-adaptation"
+license: MIT
+keywords:
+  - legal NLP
+  - clause classification
+  - prompt engineering
+  - parameter-efficient fine-tuning
+  - retrieval-augmented generation
+preferred-citation:
+  type: generic
+  thesis-type: "MSc thesis"
+  title: "An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, and Retrieval-Augmented Generation for Legal Contract Clause Classification"
+  authors:
+    - family-names: Gathongo
+      given-names: Jane Wangari
+  institution:
+    name: "University of Debrecen"
+  year: 2026

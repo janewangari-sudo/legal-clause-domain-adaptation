@@ -1,6 +1,8 @@
 # Legal Clause Domain Adaptation
 
-Research software and reproducibility materials for the MSc thesis:
+MSc Data Science thesis project at the University of Debrecen. This repository
+contains the research code, executed notebooks and reproducibility materials
+for:
 
 > **An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, and
 > Retrieval-Augmented Generation for Legal Contract Clause Classification**
@@ -8,6 +10,17 @@ Research software and reproducibility materials for the MSc thesis:
 The study compares a TF-IDF logistic-regression baseline with four
 Mistral-7B-Instruct approaches: zero-shot prompting, PEFT (LoRA), RAG, and a
 PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
+
+## What this repository contains
+
+- executed notebooks for data preparation and the original five-method study;
+- separate notebooks for the post-hoc Corrected PEFT sensitivity analysis;
+- reusable Python code for validation, splitting, evaluation and the baseline;
+- frozen aggregate results, confidence intervals and experiment metadata;
+- thesis chapter sources, figures and a claim-to-evidence audit; and
+- integrity tests and a repository validation script.
+
+Large datasets, model weights, adapters and credentials are not stored here.
 
 ## Results
 
@@ -65,6 +78,10 @@ scripts/       Small command-line entry points
 src/           Reusable validation, baseline, prompting, and evaluation code
 tests/         Methodological and integrity tests
 ```
+
+The repository is checked automatically on each push and pull request. The
+workflow installs the CPU validation dependencies, runs the tests and checks
+the archived results for internal consistency.
 
 ## Thesis manuscript
 
@@ -179,5 +196,7 @@ The source code and notebooks are available under the [MIT License](LICENSE).
 The documentation and original figures are available under the
 [Creative Commons Attribution 4.0 International License](LICENSE-DOCUMENTATION.md).
 Third-party datasets, model files and other external materials remain subject
-to their original licences and terms. Final thesis citation details will be
-added after submission.
+to their original licences and terms.
+
+Citation metadata for the repository is provided in [`CITATION.cff`](CITATION.cff).
+The final institutional thesis record can be added after submission.
