@@ -169,11 +169,15 @@ See [`docs/reproduction.md`](docs/reproduction.md) for execution order,
 claim-to-evidence audit, and [`docs/limitations.md`](docs/limitations.md) for
 unresolved constraints.
 
-## Public repository and citation
+## Licence and citation
 
 This public repository contains the code, notebooks and aggregate outputs
 needed to audit the thesis results. Raw CUAD data, model weights, adapters,
-credentials and submission-specific thesis files are not included. No software
-licence has yet been assigned, so public availability should not be interpreted
-as permission to redistribute or modify the material beyond rights provided by
-law. Final thesis citation details will be added after submission.
+credentials and submission-specific thesis files are not included.
+
+The source code and notebooks are available under the [MIT License](LICENSE).
+The documentation and original figures are available under the
+[Creative Commons Attribution 4.0 International License](LICENSE-DOCUMENTATION.md).
+Third-party datasets, model files and other external materials remain subject
+to their original licences and terms. Final thesis citation details will be
+added after submission.
