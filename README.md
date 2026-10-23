@@ -138,8 +138,11 @@ See [`docs/reproduction.md`](docs/reproduction.md) for execution order,
 claim-to-evidence audit, and [`docs/limitations.md`](docs/limitations.md) for
 unresolved constraints.
 
-## Licence and citation
+## Public repository and citation
 
-No software licence has been assigned yet. The repository is private while
-redistribution rights, final author metadata, and thesis citation details are
-being confirmed.
+This public repository contains the code, notebooks and aggregate outputs
+needed to audit the thesis results. Raw CUAD data, model weights, adapters,
+credentials and submission-specific thesis files are not included. No software
+licence has yet been assigned, so public availability should not be interpreted
+as permission to redistribute or modify the material beyond rights provided by
+law. Final thesis citation details will be added after submission.
