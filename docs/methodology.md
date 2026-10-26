@@ -57,7 +57,9 @@ The clauses were partitioned using a two-stage grouped split with random seed
 one partition. First, 20% of the 285 document-title groups were assigned to the
 test set. Of the remaining groups, 15% were assigned to validation and the rest
 to training. Table 3.1 reports the resulting partitions, and Figure 3.2 shows
-the class distribution across them.
+the share of each class within each partition. The bars are normalised
+separately for training, validation and test; they therefore show percentages,
+not raw clause counts.
 
 **Table 3.1. Grouped dataset partitions**
 
@@ -76,7 +78,7 @@ For that reason, exact and near-duplicate text was audited separately. These
 audits were diagnostic: records were not removed automatically merely because
 their wording was repeated.
 
-![Figure 3.2. Class distribution across the training, validation and test partitions](figures/figure_3_2_class_distribution.png)
+![Figure 3.2. Class shares within the training, validation and test partitions](figures/figure_3_2_class_distribution.png)
 
 ## 3.4 Compared methods
 
