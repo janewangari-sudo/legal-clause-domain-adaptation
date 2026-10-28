@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-10-10T09:19:53.124001+00:00",
+  "status": "final_corrected_peft_sensitivity_statistics_complete",
+  "primary_comparison_preserved": true,
+  "corrected_peft_status": "post_hoc_validation_selected_sensitivity",
+  "test_rows": 1850,
+  "document_title_groups": 57,
+  "classes": 20,
+  "bootstrap_resamples": 5000,
+  "corrected_peft_metrics": {
+    "accuracy": 0.8945945945945946,
+    "macro_f1": 0.8459891223818202,
+    "weighted_f1": 0.8860904226847778,
+    "unknown_count": 0
+  },
+  "corrected_peft_vs_baseline_cluster_bootstrap": {
+    "method_a": "TF-IDF + Logistic Regression",
+    "method_b": "Corrected PEFT (post-hoc)",
+    "clusters": 57,
+    "bootstrap_resamples": 5000,
+    "accuracy_difference_b_minus_a": 0.03405405405405404,
+    "accuracy_difference_ci_lower": 0.023005920493256882,
+    "accuracy_difference_ci_upper": 0.04600046535677356,
+    "accuracy_ci_excludes_zero": true,
+    "macro_f1_difference_b_minus_a": 0.03292299585661718,
+    "macro_f1_difference_ci_lower": 0.016189843861481645,
+    "macro_f1_difference_ci_upper": 0.051576584971606595,
+    "macro_f1_ci_excludes_zero": true
+  },
+  "corrected_peft_vs_original_peft_cluster_bootstrap": {
+    "method_a": "Original PEFT",
+    "method_b": "Corrected PEFT (post-hoc)",
+    "clusters": 57,
+    "bootstrap_resamples": 5000,
+    "accuracy_difference_b_minus_a": 0.2799999999999999,
+    "accuracy_difference_ci_lower": 0.25136760750761267,
+    "accuracy_difference_ci_upper": 0.31044490265253677,
+    "accuracy_ci_excludes_zero": true,
+    "macro_f1_difference_b_minus_a": 0.21994870714293935,
+    "macro_f1_difference_ci_lower": 0.19393803443975818,
+    "macro_f1_difference_ci_upper": 0.2471302392799831,
+    "macro_f1_ci_excludes_zero": true
+  },
+  "exact_text_conflict": {
+    "unique_conflicting_texts": 120,
+    "rows": 245,
+    "row_rate": 0.13243243243243244,
+    "deterministic_accuracy_ceiling": 0.932972972972973
+  },
+  "interpretation_constraints": [
+    "Corrected PEFT was developed post hoc after inspection of the original PEFT behaviour.",
+    "The original five-method comparison must remain reported.",
+    "Cluster-bootstrap intervals are preferred over row-level independence assumptions.",
+    "No further model, prompt, parser or hyperparameter selection is permitted after the frozen test evaluation."
+  ],
+  "public_artifacts": {
+    "row_level_predictions": "results/predictions/six_method_test_predictions.csv",
+    "aggregate_tables": "results/tables"
+  },
+  "privacy_note": "Clause text, raw generations, real contract titles, and local account paths were removed. Document-title groups were replaced with stable anonymous identifiers."
+}

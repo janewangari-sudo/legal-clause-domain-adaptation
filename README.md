@@ -1,7 +1,7 @@
 # Legal Clause Domain Adaptation
 
 MSc Data Science thesis project at the University of Debrecen. This repository
-contains the research code, executed notebooks and reproducibility materials
+contains the research code, experiment notebooks and reproducibility materials
 for:
 
 > **An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, and
@@ -14,9 +14,11 @@ PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 ## What this repository contains
 
 - executed notebooks for data preparation and the original five-method study;
-- separate notebooks for the post-hoc Corrected PEFT sensitivity analysis;
+- runnable notebooks with frozen settings for the post-hoc Corrected PEFT
+  sensitivity analysis;
 - reusable Python code for validation, splitting, evaluation and the baseline;
-- frozen aggregate results, confidence intervals and experiment metadata;
+- privacy-safe row-level predictions, aggregate results, confidence intervals
+  and experiment metadata;
 - thesis chapter sources, figures and a claim-to-evidence audit; and
 - integrity tests and a repository validation script.
 
@@ -58,10 +60,15 @@ preplanned experiment.
 
 ## Repository status
 
-The notebooks preserve the executed primary study and its stored outputs. The
-modular package in `src/` is a subsequent, result-preserving refactor intended
-to make validation and reuse easier. It must not be represented as the exact
-code path that originally generated every archived output.
+The first two notebooks preserve the executed primary study and its stored
+outputs. Notebooks 03–06 provide the code and frozen settings for the corrected
+PEFT workflow but are committed without stored execution output. Privacy-safe
+row-level predictions and exact metric metadata are provided under `results/`,
+and `scripts/verify_frozen_results.py` independently recomputes their metrics.
+
+The modular package in `src/` is a subsequent, result-preserving refactor
+intended to make validation and reuse easier. It must not be represented as the
+exact code path that originally generated every archived output.
 
 The corrected answer-only PEFT sensitivity study is complete. Its artifacts
 are kept separate from the original five-method study and are explicitly
@@ -127,12 +134,14 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
 pytest
 python scripts/validate_repository.py
+python scripts/verify_frozen_results.py
 ```
 
 ## Notebook execution order
 
-Run the notebooks in numerical order. The first two contain the primary study;
-the remaining four preserve the post-hoc Corrected PEFT sensitivity workflow:
+Run the notebooks in numerical order. The first two contain stored outputs from
+the primary study. The remaining four preserve the code and frozen settings for
+the post-hoc Corrected PEFT sensitivity workflow, without stored outputs:
 
 1. `01_data_preparation.ipynb`
 2. `02_experiments.ipynb`
@@ -169,7 +178,9 @@ GitHub Actions.
 Raw CUAD data, model weights, adapters, caches, credentials, and large generated
 artifacts are excluded from version control. Obtain CUAD from its official
 source and review its licence before redistribution. Never commit Hugging Face,
-Google Drive, Colab, or GitHub credentials.
+Google Drive, Colab, or GitHub credentials. The public prediction files exclude
+clause text, raw generations, real contract titles, and account-specific paths.
+Anonymous group identifiers preserve the 57-group evaluation structure.
 
 ## Reproducibility boundaries
 

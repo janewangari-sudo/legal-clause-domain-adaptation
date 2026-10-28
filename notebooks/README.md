@@ -22,9 +22,16 @@ Post-hoc PEFT sensitivity and diagnostic notebooks:
    sensitivity condition, adds document-title-group cluster-bootstrap
    intervals, and keeps row-level McNemar tests explicitly descriptive.
 
-These files preserve the cleaned record of the completed primary study. A later
-documentation-only commit corrected the split terminology from “contract-level”
-to “document-title-group” without changing the data, predictions, or scores.
+The first two notebooks preserve stored outputs from the completed primary
+study. Notebooks 03–06 preserve the runnable code and frozen settings for the
+corrected PEFT sensitivity workflow but are committed without execution output.
+Privacy-safe row-level predictions and full-precision metric metadata are
+published separately under `results/` and can be checked with
+`scripts/verify_frozen_results.py`.
+
+A later documentation-only commit corrected the split terminology from
+“contract-level” to “document-title-group” without changing the data,
+predictions, or scores.
 
 The modular code under `src/` is a post-experiment refactor. Use the notebooks
 as the historical execution record and the package for validation and reuse.

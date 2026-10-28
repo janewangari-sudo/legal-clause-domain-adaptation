@@ -270,9 +270,16 @@ The experiments were run in Google Colab, principally on an NVIDIA T4 runtime.
 The original environment was not captured completely, so package versions that
 cannot be recovered from saved metadata are not reconstructed from memory. The
 corrected PEFT notebooks record the library versions available during those
-runs. Together, the notebooks, prediction files, adapter metadata, statistical
-outputs, and repository checks form the reproducibility record. The modular
-`src/` package was written after the experiments to organise reusable code; it
-is a result-preserving refactor, not the path through which the reported LLM
-experiments were originally executed.
+runs. Notebooks 03–06 are committed without stored execution output. To support
+independent checking without redistributing clause text or account-specific
+information, the repository includes sanitized row-level validation and test
+predictions, anonymous document-group identifiers, full-precision metric
+metadata, and a verification script. Large model files, adapters, checkpoints,
+raw clause text, raw generations, and account-specific paths are not
+distributed.
+
+Together, these materials and the repository checks form the reproducibility
+record. The modular `src/` package was written after the experiments to organize
+reusable code; it is a result-preserving refactor, not the path through which
+the reported LLM experiments were originally executed.
 

@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-10T08:23:53.895064+00:00",
+  "purpose": "validation-only BOS and prompt-match diagnostic for completed PEFT v4 adapter",
+  "model_id": "mistralai/Mistral-7B-Instruct-v0.2",
+  "conditions": {
+    "A": "existing label-list prompt with original/default tokenization",
+    "B": "same label-list prompt with add_special_tokens=False",
+    "C": "exact v4 training prompt with add_special_tokens=False"
+  },
+  "selection_primary": "validation macro F1",
+  "materiality_rule": "absolute macro-F1 change >= 0.01 or a major class-level recovery/collapse",
+  "best_validation_condition_by_macro_f1": "C_training_prompt_single_bos",
+  "best_validation_macro_f1": 0.854972291860513,
+  "test_loaded": false,
+  "test_evaluated": false,
+  "retraining_performed": false,
+  "public_artifact": "results/predictions/corrected_peft_validation_predictions.csv",
+  "sensitive_fields_removed": [
+    "clause_text",
+    "raw_output"
+  ]
+}

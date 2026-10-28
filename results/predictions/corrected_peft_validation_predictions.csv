@@ -1,0 +1,834 @@
+row_id,clause_type,predicted_label
+0,Document Name,Document Name
+1,Parties,Parties
+2,Parties,Parties
+3,Parties,Parties
+4,Parties,Parties
+5,Agreement Date,Agreement Date
+6,Effective Date,Agreement Date
+7,Expiration Date,Expiration Date
+8,Governing Law,Governing Law
+9,Exclusivity,Non-Transferable License
+10,Anti-Assignment,Anti-Assignment
+11,Anti-Assignment,Anti-Assignment
+12,Revenue/Profit Sharing,Revenue/Profit Sharing
+13,License Grant,Non-Transferable License
+14,License Grant,License Grant
+15,Non-Transferable License,Non-Transferable License
+16,Non-Transferable License,License Grant
+17,Audit Rights,Audit Rights
+18,Audit Rights,Audit Rights
+19,Cap On Liability,Cap On Liability
+20,Cap On Liability,Cap On Liability
+21,Document Name,Parties
+22,Parties,Parties
+23,Parties,Parties
+24,Parties,Parties
+25,Parties,Parties
+26,Agreement Date,Agreement Date
+27,Effective Date,Effective Date
+28,Governing Law,Governing Law
+29,Termination For Convenience,Expiration Date
+30,Anti-Assignment,Anti-Assignment
+31,Anti-Assignment,Anti-Assignment
+32,Ip Ownership Assignment,Ip Ownership Assignment
+33,License Grant,License Grant
+34,License Grant,License Grant
+35,License Grant,License Grant
+36,License Grant,License Grant
+37,License Grant,License Grant
+38,License Grant,License Grant
+39,License Grant,License Grant
+40,Non-Transferable License,License Grant
+41,Non-Transferable License,License Grant
+42,Cap On Liability,Cap On Liability
+43,Document Name,Parties
+44,Parties,Parties
+45,Parties,Parties
+46,Parties,Parties
+47,Parties,Parties
+48,Agreement Date,Agreement Date
+49,Effective Date,Effective Date
+50,Governing Law,Governing Law
+51,Termination For Convenience,Expiration Date
+52,Anti-Assignment,Anti-Assignment
+53,Anti-Assignment,Anti-Assignment
+54,Anti-Assignment,Anti-Assignment
+55,Ip Ownership Assignment,Ip Ownership Assignment
+56,License Grant,License Grant
+57,License Grant,License Grant
+58,License Grant,License Grant
+59,License Grant,License Grant
+60,Non-Transferable License,License Grant
+61,Cap On Liability,Cap On Liability
+62,Document Name,Document Name
+63,Parties,Parties
+64,Parties,Parties
+65,Parties,Parties
+66,Parties,Parties
+67,Effective Date,Agreement Date
+68,Expiration Date,Expiration Date
+69,Governing Law,Governing Law
+70,Non-Compete,Post-Termination Services
+71,Termination For Convenience,Termination For Convenience
+72,Anti-Assignment,Anti-Assignment
+73,Minimum Commitment,Minimum Commitment
+74,Post-Termination Services,Post-Termination Services
+75,Audit Rights,Audit Rights
+76,Cap On Liability,Cap On Liability
+77,Cap On Liability,Cap On Liability
+78,Cap On Liability,Cap On Liability
+79,Insurance,Insurance
+80,Document Name,Document Name
+81,Parties,Parties
+82,Parties,Parties
+83,Parties,Parties
+84,Parties,Parties
+85,Agreement Date,Agreement Date
+86,Effective Date,Agreement Date
+87,Expiration Date,Expiration Date
+88,Governing Law,Governing Law
+89,Audit Rights,Audit Rights
+90,Document Name,Document Name
+91,Parties,Parties
+92,Parties,Parties
+93,Parties,Parties
+94,Parties,Parties
+95,Parties,Parties
+96,Agreement Date,Agreement Date
+97,Effective Date,Effective Date
+98,Effective Date,Agreement Date
+99,Expiration Date,Expiration Date
+100,Governing Law,Governing Law
+101,Non-Compete,Post-Termination Services
+102,Exclusivity,License Grant
+103,Termination For Convenience,Termination For Convenience
+104,Anti-Assignment,Anti-Assignment
+105,Anti-Assignment,Anti-Assignment
+106,Anti-Assignment,Anti-Assignment
+107,Anti-Assignment,Anti-Assignment
+108,Revenue/Profit Sharing,Minimum Commitment
+109,Revenue/Profit Sharing,Revenue/Profit Sharing
+110,Revenue/Profit Sharing,Revenue/Profit Sharing
+111,Minimum Commitment,Minimum Commitment
+112,Minimum Commitment,Minimum Commitment
+113,Minimum Commitment,Revenue/Profit Sharing
+114,Minimum Commitment,Minimum Commitment
+115,Ip Ownership Assignment,Ip Ownership Assignment
+116,Ip Ownership Assignment,Ip Ownership Assignment
+117,Ip Ownership Assignment,Ip Ownership Assignment
+118,License Grant,License Grant
+119,License Grant,License Grant
+120,License Grant,License Grant
+121,Non-Transferable License,License Grant
+122,Non-Transferable License,Anti-Assignment
+123,Audit Rights,Audit Rights
+124,Audit Rights,Audit Rights
+125,Audit Rights,Audit Rights
+126,Audit Rights,Audit Rights
+127,Audit Rights,Audit Rights
+128,Cap On Liability,Cap On Liability
+129,Cap On Liability,Cap On Liability
+130,Insurance,Insurance
+131,Document Name,Document Name
+132,Parties,Parties
+133,Parties,Parties
+134,Expiration Date,Expiration Date
+135,Governing Law,Governing Law
+136,Insurance,Insurance
+137,Document Name,Document Name
+138,Parties,Parties
+139,Parties,Parties
+140,Parties,Parties
+141,Parties,Parties
+142,Agreement Date,Agreement Date
+143,Effective Date,Effective Date
+144,Expiration Date,Expiration Date
+145,Governing Law,Governing Law
+146,Exclusivity,Exclusivity
+147,Exclusivity,Exclusivity
+148,Exclusivity,Exclusivity
+149,Termination For Convenience,Termination For Convenience
+150,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+151,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+152,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+153,Anti-Assignment,Anti-Assignment
+154,Revenue/Profit Sharing,Revenue/Profit Sharing
+155,Revenue/Profit Sharing,Revenue/Profit Sharing
+156,Revenue/Profit Sharing,Revenue/Profit Sharing
+157,Revenue/Profit Sharing,Revenue/Profit Sharing
+158,Audit Rights,Audit Rights
+159,Audit Rights,Audit Rights
+160,Audit Rights,Audit Rights
+161,Audit Rights,Audit Rights
+162,Audit Rights,Audit Rights
+163,Audit Rights,Audit Rights
+164,Cap On Liability,Cap On Liability
+165,Document Name,Document Name
+166,Parties,Parties
+167,Parties,Parties
+168,Parties,Parties
+169,Parties,Parties
+170,Agreement Date,Agreement Date
+171,Effective Date,Agreement Date
+172,Expiration Date,Expiration Date
+173,Governing Law,Governing Law
+174,Non-Compete,Non-Compete
+175,Exclusivity,License Grant
+176,Termination For Convenience,Termination For Convenience
+177,Anti-Assignment,Anti-Assignment
+178,Ip Ownership Assignment,Ip Ownership Assignment
+179,Ip Ownership Assignment,Ip Ownership Assignment
+180,Ip Ownership Assignment,Ip Ownership Assignment
+181,License Grant,License Grant
+182,Document Name,Document Name
+183,Parties,Parties
+184,Parties,Parties
+185,Parties,Parties
+186,Parties,Parties
+187,Parties,Parties
+188,Agreement Date,Agreement Date
+189,Effective Date,Agreement Date
+190,Expiration Date,Expiration Date
+191,Governing Law,Governing Law
+192,Exclusivity,Exclusivity
+193,Exclusivity,Exclusivity
+194,Exclusivity,Non-Compete
+195,Exclusivity,License Grant
+196,Exclusivity,Exclusivity
+197,Exclusivity,License Grant
+198,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+199,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+200,Anti-Assignment,Anti-Assignment
+201,Anti-Assignment,Anti-Assignment
+202,Anti-Assignment,Anti-Assignment
+203,Revenue/Profit Sharing,Revenue/Profit Sharing
+204,Revenue/Profit Sharing,Revenue/Profit Sharing
+205,Revenue/Profit Sharing,Revenue/Profit Sharing
+206,Revenue/Profit Sharing,Revenue/Profit Sharing
+207,Revenue/Profit Sharing,Revenue/Profit Sharing
+208,Revenue/Profit Sharing,Revenue/Profit Sharing
+209,Minimum Commitment,Minimum Commitment
+210,Minimum Commitment,Minimum Commitment
+211,Minimum Commitment,Minimum Commitment
+212,Minimum Commitment,Minimum Commitment
+213,Minimum Commitment,Minimum Commitment
+214,Minimum Commitment,Minimum Commitment
+215,Minimum Commitment,Minimum Commitment
+216,Ip Ownership Assignment,Ip Ownership Assignment
+217,Ip Ownership Assignment,Ip Ownership Assignment
+218,Ip Ownership Assignment,Ip Ownership Assignment
+219,Ip Ownership Assignment,Ip Ownership Assignment
+220,Ip Ownership Assignment,Ip Ownership Assignment
+221,Ip Ownership Assignment,Ip Ownership Assignment
+222,License Grant,License Grant
+223,License Grant,License Grant
+224,License Grant,License Grant
+225,License Grant,Non-Transferable License
+226,License Grant,Post-Termination Services
+227,License Grant,License Grant
+228,Non-Transferable License,License Grant
+229,Non-Transferable License,Non-Transferable License
+230,Non-Transferable License,License Grant
+231,Post-Termination Services,Post-Termination Services
+232,Post-Termination Services,Post-Termination Services
+233,Post-Termination Services,Post-Termination Services
+234,Post-Termination Services,Revenue/Profit Sharing
+235,Post-Termination Services,Post-Termination Services
+236,Audit Rights,Audit Rights
+237,Cap On Liability,Cap On Liability
+238,Cap On Liability,Cap On Liability
+239,Document Name,Document Name
+240,Document Name,Document Name
+241,Parties,Parties
+242,Parties,Parties
+243,Parties,Parties
+244,Parties,Parties
+245,Agreement Date,Agreement Date
+246,Revenue/Profit Sharing,Revenue/Profit Sharing
+247,License Grant,License Grant
+248,License Grant,License Grant
+249,Document Name,Document Name
+250,Parties,Parties
+251,Parties,Parties
+252,Parties,Parties
+253,Non-Compete,Non-Compete
+254,Document Name,Document Name
+255,Parties,Parties
+256,Parties,Parties
+257,Parties,Parties
+258,Parties,Parties
+259,Parties,Parties
+260,Agreement Date,Effective Date
+261,Effective Date,Agreement Date
+262,Expiration Date,Expiration Date
+263,Expiration Date,Expiration Date
+264,Governing Law,Governing Law
+265,Anti-Assignment,Anti-Assignment
+266,Minimum Commitment,Minimum Commitment
+267,Minimum Commitment,Minimum Commitment
+268,Minimum Commitment,Minimum Commitment
+269,Post-Termination Services,Post-Termination Services
+270,Audit Rights,Audit Rights
+271,Audit Rights,Audit Rights
+272,Audit Rights,Audit Rights
+273,Insurance,Insurance
+274,Insurance,Insurance
+275,Insurance,Insurance
+276,Document Name,Document Name
+277,Document Name,Document Name
+278,Parties,Parties
+279,Parties,Parties
+280,Parties,Parties
+281,Parties,Parties
+282,Agreement Date,Agreement Date
+283,Effective Date,Agreement Date
+284,Minimum Commitment,Minimum Commitment
+285,Document Name,Document Name
+286,Parties,Parties
+287,Parties,Parties
+288,Parties,Parties
+289,Parties,Parties
+290,Parties,Parties
+291,Parties,Parties
+292,Agreement Date,Effective Date
+293,Effective Date,Effective Date
+294,Expiration Date,Expiration Date
+295,Governing Law,Governing Law
+296,Termination For Convenience,Termination For Convenience
+297,Anti-Assignment,Anti-Assignment
+298,Ip Ownership Assignment,Ip Ownership Assignment
+299,Ip Ownership Assignment,Ip Ownership Assignment
+300,Ip Ownership Assignment,Ip Ownership Assignment
+301,Document Name,Document Name
+302,Parties,Parties
+303,Parties,Parties
+304,Parties,Parties
+305,Parties,Parties
+306,Parties,Parties
+307,Parties,Parties
+308,Agreement Date,Agreement Date
+309,Effective Date,Expiration Date
+310,Expiration Date,Expiration Date
+311,Governing Law,Governing Law
+312,Anti-Assignment,Anti-Assignment
+313,Cap On Liability,Cap On Liability
+314,Cap On Liability,Cap On Liability
+315,Document Name,Document Name
+316,Parties,Parties
+317,Parties,Parties
+318,Parties,Parties
+319,Parties,Parties
+320,Agreement Date,Agreement Date
+321,Effective Date,Effective Date
+322,Expiration Date,Expiration Date
+323,Document Name,Document Name
+324,Parties,Parties
+325,Parties,Parties
+326,Parties,Parties
+327,Parties,Parties
+328,Agreement Date,Agreement Date
+329,Effective Date,Effective Date
+330,Governing Law,Governing Law
+331,Exclusivity,Exclusivity
+332,Audit Rights,Audit Rights
+333,Cap On Liability,Cap On Liability
+334,Cap On Liability,Cap On Liability
+335,Cap On Liability,Cap On Liability
+336,Document Name,Document Name
+337,Parties,Parties
+338,Parties,Parties
+339,Parties,Parties
+340,Parties,Parties
+341,Parties,Parties
+342,Parties,Parties
+343,Parties,Parties
+344,Agreement Date,Agreement Date
+345,Effective Date,Effective Date
+346,Expiration Date,Expiration Date
+347,Governing Law,Governing Law
+348,Document Name,Document Name
+349,Parties,Parties
+350,Parties,Parties
+351,Parties,Parties
+352,Parties,Parties
+353,Parties,Parties
+354,Agreement Date,Agreement Date
+355,Expiration Date,Expiration Date
+356,Expiration Date,Expiration Date
+357,Expiration Date,Expiration Date
+358,Governing Law,Governing Law
+359,Exclusivity,Exclusivity
+360,Termination For Convenience,Termination For Convenience
+361,Anti-Assignment,Anti-Assignment
+362,Anti-Assignment,Anti-Assignment
+363,Audit Rights,Audit Rights
+364,Audit Rights,Audit Rights
+365,Audit Rights,Audit Rights
+366,Audit Rights,Audit Rights
+367,Audit Rights,Audit Rights
+368,Audit Rights,Audit Rights
+369,Audit Rights,Audit Rights
+370,Cap On Liability,Cap On Liability
+371,Insurance,Insurance
+372,Insurance,Insurance
+373,Insurance,Insurance
+374,Insurance,Insurance
+375,Insurance,Insurance
+376,Insurance,Insurance
+377,Insurance,Insurance
+378,Insurance,Insurance
+379,Insurance,Insurance
+380,Insurance,Insurance
+381,Document Name,Document Name
+382,Parties,Parties
+383,Parties,Parties
+384,Parties,Parties
+385,Parties,Parties
+386,Parties,Parties
+387,Agreement Date,Agreement Date
+388,Effective Date,Agreement Date
+389,Expiration Date,Expiration Date
+390,Governing Law,Governing Law
+391,Anti-Assignment,Anti-Assignment
+392,Anti-Assignment,Anti-Assignment
+393,Anti-Assignment,Anti-Assignment
+394,Minimum Commitment,Minimum Commitment
+395,Minimum Commitment,Minimum Commitment
+396,Minimum Commitment,Minimum Commitment
+397,Minimum Commitment,Minimum Commitment
+398,Minimum Commitment,Minimum Commitment
+399,Minimum Commitment,Minimum Commitment
+400,Minimum Commitment,Minimum Commitment
+401,Minimum Commitment,Minimum Commitment
+402,Minimum Commitment,Minimum Commitment
+403,Cap On Liability,Cap On Liability
+404,Cap On Liability,Cap On Liability
+405,Insurance,Insurance
+406,Insurance,Insurance
+407,Insurance,Insurance
+408,Document Name,Document Name
+409,Parties,Parties
+410,Parties,Parties
+411,Parties,Parties
+412,Parties,Parties
+413,Parties,Parties
+414,Parties,Parties
+415,Parties,Parties
+416,Parties,Parties
+417,Parties,Parties
+418,Parties,Parties
+419,Parties,Parties
+420,Agreement Date,Agreement Date
+421,Document Name,Document Name
+422,Parties,Parties
+423,Parties,Parties
+424,Parties,Parties
+425,Parties,Parties
+426,Parties,Parties
+427,Parties,Parties
+428,Parties,Parties
+429,Parties,Parties
+430,Parties,Parties
+431,Parties,Parties
+432,Parties,Parties
+433,Parties,Parties
+434,Parties,Parties
+435,Parties,Parties
+436,Parties,Parties
+437,Parties,Parties
+438,Parties,Parties
+439,Parties,Parties
+440,Parties,Parties
+441,Agreement Date,Agreement Date
+442,Document Name,Document Name
+443,Parties,Parties
+444,Parties,Parties
+445,Parties,Parties
+446,Parties,Parties
+447,Parties,Parties
+448,Parties,Parties
+449,Parties,Parties
+450,Parties,Parties
+451,Parties,Parties
+452,Parties,Parties
+453,Agreement Date,Agreement Date
+454,Document Name,Document Name
+455,Parties,Parties
+456,Parties,Parties
+457,Parties,Parties
+458,Parties,Parties
+459,Parties,Parties
+460,Parties,Parties
+461,Parties,Parties
+462,Parties,Parties
+463,Parties,Parties
+464,Parties,Parties
+465,Parties,Parties
+466,Parties,Parties
+467,Agreement Date,Agreement Date
+468,Document Name,Document Name
+469,Parties,Parties
+470,Parties,Parties
+471,Agreement Date,Agreement Date
+472,Document Name,Document Name
+473,Parties,Parties
+474,Parties,Parties
+475,Parties,Parties
+476,Parties,Parties
+477,Parties,Parties
+478,Parties,Parties
+479,Parties,Parties
+480,Parties,Parties
+481,Parties,Parties
+482,Parties,Parties
+483,Parties,Parties
+484,Parties,Parties
+485,Parties,Parties
+486,Agreement Date,Agreement Date
+487,Document Name,Document Name
+488,Parties,Parties
+489,Parties,Parties
+490,Parties,Parties
+491,Agreement Date,Agreement Date
+492,Document Name,Document Name
+493,Parties,Parties
+494,Parties,Parties
+495,Agreement Date,Agreement Date
+496,Effective Date,Effective Date
+497,Document Name,Document Name
+498,Parties,Parties
+499,Parties,Parties
+500,Agreement Date,Agreement Date
+501,Document Name,Document Name
+502,Parties,Parties
+503,Parties,Parties
+504,Parties,Parties
+505,Document Name,Document Name
+506,Parties,Parties
+507,Parties,Parties
+508,Parties,Parties
+509,Parties,Parties
+510,Agreement Date,Agreement Date
+511,Document Name,Document Name
+512,Parties,Parties
+513,Parties,Parties
+514,Parties,Parties
+515,Parties,Parties
+516,Parties,Parties
+517,Parties,Parties
+518,Parties,Parties
+519,Parties,Parties
+520,Parties,Parties
+521,Parties,Parties
+522,Agreement Date,Agreement Date
+523,Document Name,Document Name
+524,Parties,Parties
+525,Parties,Parties
+526,Parties,Parties
+527,Parties,Parties
+528,Agreement Date,Agreement Date
+529,Effective Date,Agreement Date
+530,Document Name,Non-Compete
+531,Parties,Parties
+532,Parties,Parties
+533,Parties,Anti-Assignment
+534,Parties,Parties
+535,Parties,Parties
+536,Agreement Date,Agreement Date
+537,Effective Date,Effective Date
+538,Governing Law,Governing Law
+539,Non-Compete,Non-Compete
+540,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+541,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+542,Rofr/Rofo/Rofn,Post-Termination Services
+543,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+544,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+545,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+546,Document Name,Document Name
+547,Parties,Parties
+548,Parties,Parties
+549,Parties,Parties
+550,Parties,Parties
+551,Parties,Parties
+552,Agreement Date,Agreement Date
+553,Expiration Date,Expiration Date
+554,Document Name,Document Name
+555,Parties,Parties
+556,Parties,Parties
+557,Parties,Parties
+558,Parties,Parties
+559,Parties,Parties
+560,Agreement Date,Effective Date
+561,Agreement Date,Effective Date
+562,Governing Law,Governing Law
+563,Document Name,Document Name
+564,Parties,Parties
+565,Parties,Parties
+566,Parties,Parties
+567,Parties,Parties
+568,Parties,Parties
+569,Parties,Parties
+570,Parties,Parties
+571,Parties,Parties
+572,Parties,Parties
+573,Parties,Parties
+574,Parties,Parties
+575,Agreement Date,Effective Date
+576,Expiration Date,Expiration Date
+577,Governing Law,Governing Law
+578,Anti-Assignment,Anti-Assignment
+579,Document Name,Document Name
+580,Parties,Parties
+581,Parties,Parties
+582,Parties,Parties
+583,Parties,Parties
+584,Parties,Parties
+585,Agreement Date,Agreement Date
+586,Effective Date,Effective Date
+587,Effective Date,Expiration Date
+588,Expiration Date,Expiration Date
+589,Governing Law,Governing Law
+590,Exclusivity,Exclusivity
+591,Exclusivity,Exclusivity
+592,Exclusivity,Exclusivity
+593,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+594,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+595,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+596,Anti-Assignment,Anti-Assignment
+597,Anti-Assignment,Anti-Assignment
+598,Minimum Commitment,Minimum Commitment
+599,Minimum Commitment,Minimum Commitment
+600,Minimum Commitment,Minimum Commitment
+601,Minimum Commitment,Minimum Commitment
+602,Minimum Commitment,Minimum Commitment
+603,License Grant,Exclusivity
+604,License Grant,License Grant
+605,Post-Termination Services,Post-Termination Services
+606,Post-Termination Services,Post-Termination Services
+607,Post-Termination Services,Minimum Commitment
+608,Insurance,Insurance
+609,Document Name,Document Name
+610,Parties,Parties
+611,Parties,Parties
+612,Parties,Parties
+613,Parties,Parties
+614,Parties,Parties
+615,Agreement Date,Agreement Date
+616,Effective Date,Agreement Date
+617,Expiration Date,Expiration Date
+618,Governing Law,Governing Law
+619,Termination For Convenience,Expiration Date
+620,Anti-Assignment,Anti-Assignment
+621,Anti-Assignment,Anti-Assignment
+622,Minimum Commitment,Minimum Commitment
+623,Cap On Liability,Cap On Liability
+624,Document Name,Document Name
+625,Parties,Parties
+626,Parties,Parties
+627,Parties,Parties
+628,Parties,Parties
+629,Agreement Date,Agreement Date
+630,Effective Date,Agreement Date
+631,Expiration Date,Expiration Date
+632,Governing Law,Governing Law
+633,Anti-Assignment,Anti-Assignment
+634,Minimum Commitment,Minimum Commitment
+635,License Grant,License Grant
+636,License Grant,License Grant
+637,License Grant,License Grant
+638,Cap On Liability,Cap On Liability
+639,Document Name,Document Name
+640,Parties,Parties
+641,Parties,Parties
+642,Parties,Parties
+643,Parties,Parties
+644,Agreement Date,Agreement Date
+645,Effective Date,Agreement Date
+646,Expiration Date,Expiration Date
+647,Governing Law,Governing Law
+648,Termination For Convenience,Expiration Date
+649,Anti-Assignment,Anti-Assignment
+650,Anti-Assignment,Anti-Assignment
+651,Anti-Assignment,Anti-Assignment
+652,Post-Termination Services,Post-Termination Services
+653,Audit Rights,Audit Rights
+654,Audit Rights,Audit Rights
+655,Audit Rights,Audit Rights
+656,Audit Rights,Audit Rights
+657,Audit Rights,Audit Rights
+658,Cap On Liability,Cap On Liability
+659,Cap On Liability,Cap On Liability
+660,Insurance,Insurance
+661,Insurance,Insurance
+662,Insurance,Cap On Liability
+663,Insurance,Insurance
+664,Insurance,Insurance
+665,Insurance,Insurance
+666,Insurance,Insurance
+667,Insurance,Insurance
+668,Insurance,Insurance
+669,Insurance,Insurance
+670,Document Name,Document Name
+671,Parties,Parties
+672,Parties,Parties
+673,Effective Date,Effective Date
+674,Expiration Date,Effective Date
+675,Anti-Assignment,Anti-Assignment
+676,Cap On Liability,Cap On Liability
+677,Document Name,Document Name
+678,Parties,Parties
+679,Parties,Parties
+680,Parties,Parties
+681,Parties,Parties
+682,Parties,Parties
+683,Agreement Date,Agreement Date
+684,Expiration Date,Expiration Date
+685,Governing Law,Governing Law
+686,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+687,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+688,Anti-Assignment,Anti-Assignment
+689,Anti-Assignment,Anti-Assignment
+690,Anti-Assignment,Anti-Assignment
+691,Anti-Assignment,Anti-Assignment
+692,Revenue/Profit Sharing,Revenue/Profit Sharing
+693,Revenue/Profit Sharing,Revenue/Profit Sharing
+694,Revenue/Profit Sharing,Revenue/Profit Sharing
+695,License Grant,License Grant
+696,License Grant,License Grant
+697,Audit Rights,Audit Rights
+698,Audit Rights,Audit Rights
+699,Audit Rights,Audit Rights
+700,Cap On Liability,Cap On Liability
+701,Cap On Liability,Cap On Liability
+702,Cap On Liability,Cap On Liability
+703,Cap On Liability,Cap On Liability
+704,Cap On Liability,Cap On Liability
+705,Document Name,Document Name
+706,Parties,Parties
+707,Parties,Parties
+708,Parties,Parties
+709,Parties,Parties
+710,Agreement Date,Agreement Date
+711,Expiration Date,Expiration Date
+712,Governing Law,Governing Law
+713,Termination For Convenience,Termination For Convenience
+714,Anti-Assignment,Anti-Assignment
+715,Anti-Assignment,Anti-Assignment
+716,License Grant,License Grant
+717,License Grant,License Grant
+718,Non-Transferable License,License Grant
+719,Post-Termination Services,Post-Termination Services
+720,Cap On Liability,Cap On Liability
+721,Cap On Liability,Cap On Liability
+722,Document Name,Document Name
+723,Parties,Parties
+724,Parties,Parties
+725,Parties,Parties
+726,Parties,Parties
+727,Parties,Parties
+728,Agreement Date,Agreement Date
+729,Effective Date,Agreement Date
+730,Expiration Date,Expiration Date
+731,Governing Law,Governing Law
+732,Anti-Assignment,Anti-Assignment
+733,Anti-Assignment,Anti-Assignment
+734,Insurance,Insurance
+735,Insurance,Insurance
+736,Insurance,Insurance
+737,Insurance,Insurance
+738,Document Name,Document Name
+739,Parties,Parties
+740,Parties,Parties
+741,Parties,Parties
+742,Parties,Parties
+743,Parties,Parties
+744,Agreement Date,Agreement Date
+745,Effective Date,Agreement Date
+746,Expiration Date,Expiration Date
+747,Governing Law,Governing Law
+748,Termination For Convenience,Termination For Convenience
+749,Anti-Assignment,Anti-Assignment
+750,Anti-Assignment,Anti-Assignment
+751,Anti-Assignment,Anti-Assignment
+752,Post-Termination Services,Post-Termination Services
+753,Audit Rights,Audit Rights
+754,Audit Rights,Audit Rights
+755,Audit Rights,Audit Rights
+756,Cap On Liability,Cap On Liability
+757,Insurance,Insurance
+758,Insurance,Insurance
+759,Insurance,Insurance
+760,Insurance,Insurance
+761,Insurance,Insurance
+762,Insurance,Insurance
+763,Insurance,Insurance
+764,Insurance,Insurance
+765,Document Name,Document Name
+766,Parties,Parties
+767,Parties,Parties
+768,Parties,Parties
+769,Parties,Parties
+770,Agreement Date,Agreement Date
+771,Effective Date,Effective Date
+772,Effective Date,Expiration Date
+773,Expiration Date,Expiration Date
+774,Expiration Date,Expiration Date
+775,Governing Law,Governing Law
+776,Non-Compete,Non-Compete
+777,Non-Compete,Non-Compete
+778,Termination For Convenience,Termination For Convenience
+779,Anti-Assignment,Anti-Assignment
+780,Revenue/Profit Sharing,Revenue/Profit Sharing
+781,Ip Ownership Assignment,Ip Ownership Assignment
+782,Ip Ownership Assignment,Ip Ownership Assignment
+783,Ip Ownership Assignment,Ip Ownership Assignment
+784,Post-Termination Services,Post-Termination Services
+785,Insurance,Insurance
+786,Insurance,Insurance
+787,Document Name,Document Name
+788,Parties,Parties
+789,Parties,Parties
+790,Parties,Parties
+791,Parties,Parties
+792,Agreement Date,Agreement Date
+793,Effective Date,Agreement Date
+794,Exclusivity,Exclusivity
+795,Document Name,Document Name
+796,Parties,Parties
+797,Parties,Parties
+798,Parties,Parties
+799,Parties,Parties
+800,Agreement Date,Agreement Date
+801,Document Name,Document Name
+802,Parties,Parties
+803,Parties,Parties
+804,Parties,Parties
+805,Parties,Parties
+806,Agreement Date,Agreement Date
+807,Expiration Date,Effective Date
+808,Governing Law,Governing Law
+809,Exclusivity,Exclusivity
+810,Exclusivity,Exclusivity
+811,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+812,Rofr/Rofo/Rofn,Anti-Assignment
+813,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+814,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+815,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+816,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+817,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+818,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+819,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+820,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+821,Rofr/Rofo/Rofn,Rofr/Rofo/Rofn
+822,Anti-Assignment,Anti-Assignment
+823,Revenue/Profit Sharing,Revenue/Profit Sharing
+824,Revenue/Profit Sharing,Revenue/Profit Sharing
+825,Revenue/Profit Sharing,Revenue/Profit Sharing
+826,Document Name,Document Name
+827,Parties,Parties
+828,Parties,Parties
+829,Parties,Parties
+830,Parties,Parties
+831,Ip Ownership Assignment,Ip Ownership Assignment
+832,Ip Ownership Assignment,Ip Ownership Assignment

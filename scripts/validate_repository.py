@@ -26,6 +26,13 @@ REQUIRED_FILES = (
     "results/tables/primary_metrics.csv",
     "results/tables/confidence_intervals.csv",
     "results/metadata/experiment_manifest.json",
+    "results/metadata/corrected_peft_validation_metadata.json",
+    "results/metadata/corrected_peft_test_metrics.json",
+    "results/metadata/corrected_peft_test_configuration.json",
+    "results/metadata/corrected_peft_summary.json",
+    "results/predictions/corrected_peft_validation_predictions.csv",
+    "results/predictions/corrected_peft_test_predictions.csv",
+    "results/predictions/six_method_test_predictions.csv",
 )
 
 CITATION_KEYS = (

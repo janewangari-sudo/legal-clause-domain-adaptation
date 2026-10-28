@@ -31,3 +31,6 @@ jobs:
 
       - name: Validate archived results
         run: python scripts/validate_repository.py
+
+      - name: Recompute frozen prediction metrics
+        run: python scripts/verify_frozen_results.py

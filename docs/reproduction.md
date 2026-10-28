@@ -27,7 +27,12 @@ memory and the archived model, adapter, prediction, and retrieval artifacts.
 python -m pip install -e ".[dev]"
 pytest
 python scripts/validate_repository.py
+python scripts/verify_frozen_results.py
 ```
+
+The second script recomputes the published Corrected PEFT and six-method metrics
+from the sanitized row-level prediction files. It does not require the CUAD
+text, model weights, adapters, or a GPU.
 
 ## Baseline reproduction
 
