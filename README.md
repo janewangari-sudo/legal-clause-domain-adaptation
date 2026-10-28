@@ -78,7 +78,7 @@ labelled post hoc and validation-selected.
 
 ```text
 configs/       Frozen labels and experiment settings
-docs/          Data contract, figures, limitations, reproduction notes, and evidence audits
+docs/          Figures, reproduction notes, and evidence audits
 notebooks/     Executed data-preparation and experiment records
 results/       Machine-readable primary metrics and confidence intervals
 scripts/       Small command-line entry points
@@ -165,10 +165,9 @@ Anonymous group identifiers preserve the 57-group evaluation structure.
 - Retrieval examples per query: `3`
 - Unknown or non-canonical generated labels are scored as incorrect
 
-See [`docs/reproduction.md`](docs/reproduction.md) for execution order,
+See [`docs/reproduction.md`](docs/reproduction.md) for execution order and
 [`docs/source_and_factual_audit.md`](docs/source_and_factual_audit.md) for the
-claim-to-evidence audit, and [`docs/limitations.md`](docs/limitations.md) for
-unresolved constraints.
+claim-to-evidence audit.
 
 ## Licence and citation
 

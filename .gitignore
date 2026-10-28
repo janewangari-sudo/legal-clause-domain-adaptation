@@ -27,11 +27,6 @@ checkpoints/
 *.npz
 *.zip
 
-# Local thesis build products
-Legal_Clause_Classification_Thesis_Draft.docx
-thesis.pdf
-thesis_render*/
-
 # Operating-system and editor files
 .DS_Store
 Thumbs.db

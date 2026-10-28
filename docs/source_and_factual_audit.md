@@ -7,17 +7,15 @@ This record documents the source and numerical checks completed on 14 October
 files and statistical tables remain the authority for experimental results;
 the prose chapters must not be used to reconstruct those values.
 
-The user-edited Word manuscript was rechecked on 15 October 2026. Chapters 1
-and 2 were preserved, while Chapters 3 to 7 were reconciled with this audit.
-The final Word reference list contains the same 21 cited works recorded here,
-and its methodology now states the audited CUAD transformation and all three
-generative truncation limits explicitly.
+The final manuscript was rechecked on 15 October 2026. Its reference list
+contains the same 21 cited works recorded here, and the methodology states the
+audited CUAD transformation and all three generative truncation limits
+explicitly.
 
 The bibliography uses a consistent author-date format. Titles, author lists,
 years, venues, pages and identifiers were checked against publisher,
-conference or bibliographic records where available. All works cited in the
-thesis chapters appear in `docs/bibliography.md`, and every bibliography entry
-is cited in at least one chapter.
+conference or bibliographic records where available. All works cited in the manuscript appear in its final bibliography, and every
+bibliography entry is cited in the text.
 
 ## Literature claim checks
 
@@ -46,8 +44,8 @@ tasks and models those studies actually evaluated.
 
 ## Citation coverage
 
-The following author-year keys are used across Chapters 2 and 3 and are all
-present in the bibliography:
+The following author-year keys are used in the literature review and
+methodology and are all present in the bibliography:
 
 `Brown 2020`; `Chalkidis 2020`; `Chalkidis 2022`; `Dettmers 2023`;
 `Efron and Tibshirani 1993`; `Guha 2023`; `Hakimi Parizi 2023`;
@@ -89,15 +87,15 @@ entry remains.
 
 - Values in the chapters are rounded from frozen machine-readable tables, not
   copied from intermediate notebook progress displays.
-- Corrected PEFT remains labelled post-hoc and validation-selected. Its test
+- Corrected PEFT remains labelled post hoc and validation-selected. Its test
   result does not replace or retroactively redesign the original five-method
   comparison.
 - The 57 test groups are annotated document-title groups, not 57 verified
   unique contracts.
 - The 0.9330 exact-text figure is a deterministic clause-string ceiling, not a
   universal task ceiling.
-- The raw data and row-level prediction files are intentionally excluded from
-  GitHub. Claims that require them are also backed by the executed notebook
-  assertions and exported aggregate tables retained in the repository.
+- Raw CUAD clause text, unsanitized generations, and model artifacts are
+  excluded from GitHub. Sanitized row-level predictions and aggregate tables
+  are retained under `results/` for independent metric verification.
 - Package versions or cost figures absent from saved evidence are not inferred
   from memory. The manuscript states these reproducibility limits explicitly.
