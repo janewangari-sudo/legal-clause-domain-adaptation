@@ -1,20 +1,20 @@
 # Legal Clause Domain Adaptation
 
 MSc Data Science thesis project at the University of Debrecen. This repository
-contains the research code, experiment notebooks and reproducibility materials
+contains the research code, experiment notebooks, and reproducibility materials
 for:
 
 > **An Empirical Comparison of Prompting, Parameter-Efficient Fine-Tuning, and
 > Retrieval-Augmented Generation for Legal Contract Clause Classification**
 
-The study compares a TF-IDF logistic-regression baseline with four
+The study compares a TF-IDF logistic regression baseline with four
 Mistral-7B-Instruct approaches: zero-shot prompting, PEFT (LoRA), RAG, and a
 PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 
 ## What this repository contains
 
 - executed notebooks for data preparation and the original five-method study;
-- runnable notebooks with frozen settings for the post-hoc Corrected PEFT
+- runnable notebooks with frozen settings for the post hoc Corrected PEFT
   sensitivity analysis;
 - reusable Python code for validation, splitting, evaluation and the baseline;
 - privacy-safe row-level predictions, aggregate results, confidence intervals
@@ -43,13 +43,13 @@ baseline was the strongest original method.
 
 ### Corrected PEFT sensitivity
 
-A post-hoc PEFT sensitivity study corrected the training objective and matched
+A post hoc PEFT sensitivity study corrected the training objective and matched
 the inference prompt to the training prompt. The condition was selected on
 validation and then evaluated once on test.
 
 | Method | Analysis status | Accuracy | Macro F1 | Weighted F1 |
 |---|---|---:|---:|---:|
-| Corrected PEFT | Post-hoc sensitivity | **0.8946** | **0.8460** | **0.8861** |
+| Corrected PEFT | Post hoc sensitivity | **0.8946** | **0.8460** | **0.8861** |
 | TF-IDF + Logistic Regression | Original comparison | 0.8605 | 0.8131 | 0.8559 |
 
 The corrected PEFT advantage over the baseline was 0.0341 Accuracy (95%
@@ -93,7 +93,7 @@ the archived results for internal consistency.
 ## Thesis manuscript
 
 The seven thesis chapters are maintained as reviewable Markdown files under
-`docs/`, together with the four figures used in the supervisor-revised draft.
+`docs/`.
 The formatted Word draft is generated locally and is deliberately not tracked
 because it contains submission-specific personal and administrative fields.
 
@@ -210,4 +210,3 @@ Third-party datasets, model files and other external materials remain subject
 to their original licences and terms.
 
 Citation metadata for the repository is provided in [`CITATION.cff`](CITATION.cff).
-The final institutional thesis record can be added after submission.
