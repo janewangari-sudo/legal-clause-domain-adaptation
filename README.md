@@ -19,7 +19,7 @@ PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 - reusable Python code for validation, splitting, evaluation and the baseline;
 - privacy-safe row-level predictions, aggregate results, confidence intervals
   and experiment metadata;
-- thesis chapter sources, figures and a claim-to-evidence audit; and
+- figures, reproduction notes and a claim-to-evidence audit; and
 - integrity tests and a repository validation script.
 
 Large datasets, model weights, adapters and credentials are not stored here.
@@ -72,13 +72,13 @@ exact code path that originally generated every archived output.
 
 The corrected answer-only PEFT sensitivity study is complete. Its artifacts
 are kept separate from the original five-method study and are explicitly
-labelled post-hoc and validation-selected.
+labelled post hoc and validation-selected.
 
 ## Repository structure
 
 ```text
 configs/       Frozen labels and experiment settings
-docs/          Thesis chapter drafts, data contract, limitations, and reproduction notes
+docs/          Data contract, figures, limitations, reproduction notes, and evidence audits
 notebooks/     Executed data-preparation and experiment records
 results/       Machine-readable primary metrics and confidence intervals
 scripts/       Small command-line entry points
@@ -89,33 +89,6 @@ tests/         Methodological and integrity tests
 The repository is checked automatically on each push and pull request. The
 workflow installs the CPU validation dependencies, runs the tests and checks
 the archived results for internal consistency.
-
-## Thesis manuscript
-
-The seven thesis chapters are maintained as reviewable Markdown files under
-`docs/`.
-The formatted Word draft is generated locally and is deliberately not tracked
-because it contains submission-specific personal and administrative fields.
-
-Set the title-page fields in the shell before building. This keeps candidate
-and supervisor details out of the public source files:
-
-```bash
-python -m pip install -e ".[thesis]"
-export THESIS_CANDIDATE_NAME="<candidate full name>"
-export THESIS_PROGRAMME_NAME="Data Science MSc"
-export THESIS_SUPERVISOR_NAME="<supervisor full name>"
-export THESIS_SUPERVISOR_TITLE="<official academic title>"
-python scripts/build_thesis_document.py
-```
-
-On Windows PowerShell, replace `export NAME="value"` with
-`$env:NAME="value"`. Open the generated document in Microsoft Word and update
-all fields with `Ctrl+A`, `F9` before checking pagination.
-
-Before generating a submission copy, confirm the exact approved title,
-candidate details, programme wording, supervisor name and academic title. The
-mandatory AI-use declaration is included at the end of the generated draft.
 
 ## Split definition
 
@@ -141,7 +114,7 @@ python scripts/verify_frozen_results.py
 
 Run the notebooks in numerical order. The first two contain stored outputs from
 the primary study. The remaining four preserve the code and frozen settings for
-the post-hoc Corrected PEFT sensitivity workflow, without stored outputs:
+the post hoc Corrected PEFT sensitivity workflow, without stored outputs:
 
 1. `01_data_preparation.ipynb`
 2. `02_experiments.ipynb`
@@ -150,10 +123,10 @@ the post-hoc Corrected PEFT sensitivity workflow, without stored outputs:
 5. `05_peft_v4_condition_c_final_test.ipynb`
 6. `06_corrected_peft_final_statistics.ipynb`
 
-The diagnostic and test notebooks contain hard stops designed to prevent test
-reuse or post-test tuning. Configure the Google Drive paths inside the
-notebooks, preserve the frozen prompts and settings, and do not replace the
-archived primary results with the later sensitivity condition. See
+The validation diagnostic and final test evaluation are kept in separate
+notebooks to preserve the selection sequence. Configure the Google Drive paths
+inside the notebooks, preserve the frozen prompts and settings, and do not
+replace the archived primary results with the later sensitivity condition. See
 [`notebooks/README.md`](notebooks/README.md) and
 [`docs/reproduction.md`](docs/reproduction.md) for the purpose and resource
 requirements of each stage.
