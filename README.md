@@ -13,7 +13,7 @@ PEFT–RAG hybrid on a frozen 20-class subset of CUAD.
 
 ## What this repository contains
 
-- executed notebooks for data preparation and the original five-method study;
+- runnable notebooks for data preparation and the original five-method study;
 - runnable notebooks with frozen settings for the post hoc Corrected PEFT
   sensitivity analysis;
 - reusable Python code for validation, splitting, evaluation and the baseline;
@@ -60,11 +60,10 @@ preplanned experiment.
 
 ## Repository status
 
-The first two notebooks preserve the executed primary study and its stored
-outputs. Notebooks 03–06 provide the code and frozen settings for the corrected
-PEFT workflow but are committed without stored execution output. Privacy-safe
-row-level predictions and exact metric metadata are provided under `results/`,
-and `scripts/verify_frozen_results.py` independently recomputes their metrics.
+All notebooks preserve the code and frozen settings used in the study but are
+committed without stored execution output. Privacy-safe row-level predictions
+and exact metric metadata are provided under `results/`, and
+`scripts/verify_frozen_results.py` independently recomputes their metrics.
 
 The modular package in `src/` is a subsequent, result-preserving refactor
 intended to make validation and reuse easier. It must not be represented as the
@@ -79,7 +78,7 @@ labelled post hoc and validation-selected.
 ```text
 configs/       Frozen labels and experiment settings
 docs/          Figures, reproduction notes, and evidence audits
-notebooks/     Executed data-preparation and experiment records
+notebooks/     Runnable data-preparation and experiment notebooks
 results/       Machine-readable primary metrics and confidence intervals
 scripts/       Small command-line entry points
 src/           Reusable validation, baseline, prompting, and evaluation code
@@ -112,9 +111,9 @@ python scripts/verify_frozen_results.py
 
 ## Notebook execution order
 
-Run the notebooks in numerical order. The first two contain stored outputs from
-the primary study. The remaining four preserve the code and frozen settings for
-the post hoc Corrected PEFT sensitivity workflow, without stored outputs:
+Run the notebooks in numerical order. They preserve the code and frozen
+settings for the primary study and the post hoc Corrected PEFT sensitivity
+workflow, without stored outputs:
 
 1. `01_data_preparation.ipynb`
 2. `02_experiments.ipynb`
